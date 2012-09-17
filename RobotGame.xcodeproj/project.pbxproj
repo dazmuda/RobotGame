@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8401153E16079CE6005107FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401153D16079CE6005107FE /* UIKit.framework */; };
+		8401154016079CE6005107FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401153F16079CE6005107FE /* Foundation.framework */; };
+		8401154216079CE6005107FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401154116079CE6005107FE /* CoreGraphics.framework */; };
+		8401154416079CE6005107FE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401154316079CE6005107FE /* CoreData.framework */; };
+		8401154A16079CE6005107FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8401154816079CE6005107FE /* InfoPlist.strings */; };
+		8401154C16079CE6005107FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401154B16079CE6005107FE /* main.m */; };
+		8401155016079CE6005107FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401154F16079CE6005107FE /* AppDelegate.m */; };
+		8401155316079CE6005107FE /* RobotGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8401155116079CE6005107FE /* RobotGame.xcdatamodeld */; };
+		8401155B16079DBA005107FE /* LevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401155A16079DBA005107FE /* LevelViewController.m */; };
+		8401155D16079DF4005107FE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401155C16079DF4005107FE /* CoreAudio.framework */; };
+		8401155F16079E0E005107FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401155E16079E0E005107FE /* QuartzCore.framework */; };
+		8401156116079E17005107FE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401156016079E17005107FE /* AVFoundation.framework */; };
+		8401156516079E72005107FE /* LevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401156416079E72005107FE /* LevelView.m */; };
+		8401156816079EC4005107FE /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401156716079EC3005107FE /* ControlView.m */; };
+		8401156B16079F7A005107FE /* CombatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401156A16079F79005107FE /* CombatView.m */; };
+		8401156E16079FA7005107FE /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401156D16079FA6005107FE /* PlayerView.m */; };
+		8401157116079FD8005107FE /* StatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401157016079FD7005107FE /* StatsView.m */; };
+		840115741607A043005107FE /* ItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115731607A042005107FE /* ItemView.m */; };
+		840115771607A0A1005107FE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115761607A0A0005107FE /* Player.m */; };
+		8401157B1607A0E4005107FE /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401157A1607A0E3005107FE /* Item.m */; };
+		8401157E1607A107005107FE /* Mob.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401157D1607A107005107FE /* Mob.m */; };
+		840115811607A17F005107FE /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115801607A17E005107FE /* Level.m */; };
+		840115841607A1C5005107FE /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115831607A1C4005107FE /* Square.m */; };
+		840115871607A1FC005107FE /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115861607A1FC005107FE /* Position.m */; };
+		8401158A1607A22F005107FE /* Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115891607A22E005107FE /* Direction.m */; };
+		8401158F1607A2DD005107FE /* bang.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8401158C1607A2DD005107FE /* bang.wav */; };
+		840115901607A2DD005107FE /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8401158D1607A2DD005107FE /* laser.wav */; };
+		840115911607A2DD005107FE /* zap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8401158E1607A2DD005107FE /* zap.wav */; };
+		840115A41607A2F7005107FE /* enter.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115931607A2F7005107FE /* enter.png */; };
+		840115A51607A2F7005107FE /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115941607A2F7005107FE /* exit.png */; };
+		840115A61607A2F7005107FE /* ehit.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115951607A2F7005107FE /* ehit.png */; };
+		840115A71607A2F7005107FE /* mhit.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115961607A2F7005107FE /* mhit.png */; };
+		840115A81607A2F7005107FE /* phit.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115971607A2F7005107FE /* phit.png */; };
+		840115A91607A2F7005107FE /* redfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115981607A2F7005107FE /* redfloor.png */; };
+		840115AA1607A2F7005107FE /* floor1.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115991607A2F7005107FE /* floor1.png */; };
+		840115AB1607A2F7005107FE /* floor2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159A1607A2F7005107FE /* floor2.png */; };
+		840115AC1607A2F7005107FE /* floor3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159B1607A2F7005107FE /* floor3.png */; };
+		840115AD1607A2F7005107FE /* floor4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159C1607A2F7005107FE /* floor4.png */; };
+		840115AE1607A2F7005107FE /* floor5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159D1607A2F7005107FE /* floor5.png */; };
+		840115AF1607A2F7005107FE /* tinybot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159E1607A2F7005107FE /* tinybot.png */; };
+		840115B01607A2F7005107FE /* purplebot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159F1607A2F7005107FE /* purplebot.png */; };
+		840115B11607A2F7005107FE /* redbot.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A01607A2F7005107FE /* redbot.png */; };
+		840115B21607A2F7005107FE /* fightpurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A11607A2F7005107FE /* fightpurple.png */; };
+		840115B31607A2F7005107FE /* fightred.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A21607A2F7005107FE /* fightred.png */; };
+		840115B41607A2F7005107FE /* inventory.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A31607A2F7005107FE /* inventory.png */; };
+		840115C61607AC74005107FE /* WorldDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115C51607AC74005107FE /* WorldDataStore.m */; };
+		840115CD1607B476005107FE /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115CC1607B473005107FE /* World.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8401153916079CE6005107FE /* RobotGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobotGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8401153D16079CE6005107FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8401153F16079CE6005107FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8401154116079CE6005107FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8401154316079CE6005107FE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8401154716079CE6005107FE /* RobotGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RobotGame-Info.plist"; sourceTree = "<group>"; };
+		8401154916079CE6005107FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8401154B16079CE6005107FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8401154D16079CE6005107FE /* RobotGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RobotGame-Prefix.pch"; sourceTree = "<group>"; };
+		8401154E16079CE6005107FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8401154F16079CE6005107FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8401155216079CE6005107FE /* RobotGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RobotGame.xcdatamodel; sourceTree = "<group>"; };
+		8401155916079DBA005107FE /* LevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelViewController.h; sourceTree = "<group>"; };
+		8401155A16079DBA005107FE /* LevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelViewController.m; sourceTree = "<group>"; };
+		8401155C16079DF4005107FE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		8401155E16079E0E005107FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8401156016079E17005107FE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8401156316079E72005107FE /* LevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelView.h; sourceTree = "<group>"; };
+		8401156416079E72005107FE /* LevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelView.m; sourceTree = "<group>"; };
+		8401156616079EC3005107FE /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
+		8401156716079EC3005107FE /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlView.m; sourceTree = "<group>"; };
+		8401156916079F79005107FE /* CombatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatView.h; sourceTree = "<group>"; };
+		8401156A16079F79005107FE /* CombatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatView.m; sourceTree = "<group>"; };
+		8401156C16079FA6005107FE /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		8401156D16079FA6005107FE /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		8401156F16079FD7005107FE /* StatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsView.h; sourceTree = "<group>"; };
+		8401157016079FD7005107FE /* StatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsView.m; sourceTree = "<group>"; };
+		840115721607A042005107FE /* ItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemView.h; sourceTree = "<group>"; };
+		840115731607A042005107FE /* ItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemView.m; sourceTree = "<group>"; };
+		840115751607A0A0005107FE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		840115761607A0A0005107FE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		840115791607A0E3005107FE /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		8401157A1607A0E3005107FE /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		8401157C1607A107005107FE /* Mob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mob.h; sourceTree = "<group>"; };
+		8401157D1607A107005107FE /* Mob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mob.m; sourceTree = "<group>"; };
+		8401157F1607A17E005107FE /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		840115801607A17E005107FE /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		840115821607A1C4005107FE /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
+		840115831607A1C4005107FE /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
+		840115851607A1FB005107FE /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		840115861607A1FC005107FE /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		840115881607A22D005107FE /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Direction.h; sourceTree = "<group>"; };
+		840115891607A22E005107FE /* Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Direction.m; sourceTree = "<group>"; };
+		8401158C1607A2DD005107FE /* bang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bang.wav; sourceTree = "<group>"; };
+		8401158D1607A2DD005107FE /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
+		8401158E1607A2DD005107FE /* zap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = zap.wav; sourceTree = "<group>"; };
+		840115931607A2F7005107FE /* enter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enter.png; sourceTree = "<group>"; };
+		840115941607A2F7005107FE /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
+		840115951607A2F7005107FE /* ehit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ehit.png; sourceTree = "<group>"; };
+		840115961607A2F7005107FE /* mhit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mhit.png; sourceTree = "<group>"; };
+		840115971607A2F7005107FE /* phit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phit.png; sourceTree = "<group>"; };
+		840115981607A2F7005107FE /* redfloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfloor.png; sourceTree = "<group>"; };
+		840115991607A2F7005107FE /* floor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor1.png; sourceTree = "<group>"; };
+		8401159A1607A2F7005107FE /* floor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor2.png; sourceTree = "<group>"; };
+		8401159B1607A2F7005107FE /* floor3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor3.png; sourceTree = "<group>"; };
+		8401159C1607A2F7005107FE /* floor4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor4.png; sourceTree = "<group>"; };
+		8401159D1607A2F7005107FE /* floor5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor5.png; sourceTree = "<group>"; };
+		8401159E1607A2F7005107FE /* tinybot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinybot.png; sourceTree = "<group>"; };
+		8401159F1607A2F7005107FE /* purplebot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purplebot.png; sourceTree = "<group>"; };
+		840115A01607A2F7005107FE /* redbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbot.png; sourceTree = "<group>"; };
+		840115A11607A2F7005107FE /* fightpurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightpurple.png; sourceTree = "<group>"; };
+		840115A21607A2F7005107FE /* fightred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightred.png; sourceTree = "<group>"; };
+		840115A31607A2F7005107FE /* inventory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inventory.png; sourceTree = "<group>"; };
+		840115C41607AC74005107FE /* WorldDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldDataStore.h; sourceTree = "<group>"; };
+		840115C51607AC74005107FE /* WorldDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldDataStore.m; sourceTree = "<group>"; };
+		840115CB1607B471005107FE /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		840115CC1607B473005107FE /* World.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8401153616079CE6005107FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8401156116079E17005107FE /* AVFoundation.framework in Frameworks */,
+				8401155F16079E0E005107FE /* QuartzCore.framework in Frameworks */,
+				8401155D16079DF4005107FE /* CoreAudio.framework in Frameworks */,
+				8401154216079CE6005107FE /* CoreGraphics.framework in Frameworks */,
+				8401153E16079CE6005107FE /* UIKit.framework in Frameworks */,
+				8401154016079CE6005107FE /* Foundation.framework in Frameworks */,
+				8401154416079CE6005107FE /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8401152E16079CE6005107FE = {
+			isa = PBXGroup;
+			children = (
+				8401154516079CE6005107FE /* RobotGame */,
+				8401153C16079CE6005107FE /* Frameworks */,
+				8401153A16079CE6005107FE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8401153A16079CE6005107FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8401153916079CE6005107FE /* RobotGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8401153C16079CE6005107FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8401156016079E17005107FE /* AVFoundation.framework */,
+				8401155E16079E0E005107FE /* QuartzCore.framework */,
+				8401155C16079DF4005107FE /* CoreAudio.framework */,
+				8401153D16079CE6005107FE /* UIKit.framework */,
+				8401153F16079CE6005107FE /* Foundation.framework */,
+				8401154116079CE6005107FE /* CoreGraphics.framework */,
+				8401154316079CE6005107FE /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8401154516079CE6005107FE /* RobotGame */ = {
+			isa = PBXGroup;
+			children = (
+				8401154E16079CE6005107FE /* AppDelegate.h */,
+				8401154F16079CE6005107FE /* AppDelegate.m */,
+				8401155116079CE6005107FE /* RobotGame.xcdatamodeld */,
+				8401155916079DBA005107FE /* LevelViewController.h */,
+				8401155A16079DBA005107FE /* LevelViewController.m */,
+				840115BC1607AA90005107FE /* CoreData */,
+				840115921607A2E1005107FE /* Images */,
+				8401158B1607A2AF005107FE /* Audio */,
+				8401156216079E5B005107FE /* Views */,
+				840115781607A0A5005107FE /* Models */,
+				8401154616079CE6005107FE /* Supporting Files */,
+			);
+			path = RobotGame;
+			sourceTree = "<group>";
+		};
+		8401154616079CE6005107FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8401154716079CE6005107FE /* RobotGame-Info.plist */,
+				8401154816079CE6005107FE /* InfoPlist.strings */,
+				8401154B16079CE6005107FE /* main.m */,
+				8401154D16079CE6005107FE /* RobotGame-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8401156216079E5B005107FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8401156316079E72005107FE /* LevelView.h */,
+				8401156416079E72005107FE /* LevelView.m */,
+				8401156616079EC3005107FE /* ControlView.h */,
+				8401156716079EC3005107FE /* ControlView.m */,
+				8401156916079F79005107FE /* CombatView.h */,
+				8401156A16079F79005107FE /* CombatView.m */,
+				8401156C16079FA6005107FE /* PlayerView.h */,
+				8401156D16079FA6005107FE /* PlayerView.m */,
+				8401156F16079FD7005107FE /* StatsView.h */,
+				8401157016079FD7005107FE /* StatsView.m */,
+				840115721607A042005107FE /* ItemView.h */,
+				840115731607A042005107FE /* ItemView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		840115781607A0A5005107FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				840115751607A0A0005107FE /* Player.h */,
+				840115761607A0A0005107FE /* Player.m */,
+				840115791607A0E3005107FE /* Item.h */,
+				8401157A1607A0E3005107FE /* Item.m */,
+				8401157C1607A107005107FE /* Mob.h */,
+				8401157D1607A107005107FE /* Mob.m */,
+				8401157F1607A17E005107FE /* Level.h */,
+				840115801607A17E005107FE /* Level.m */,
+				840115821607A1C4005107FE /* Square.h */,
+				840115831607A1C4005107FE /* Square.m */,
+				840115851607A1FB005107FE /* Position.h */,
+				840115861607A1FC005107FE /* Position.m */,
+				840115881607A22D005107FE /* Direction.h */,
+				840115891607A22E005107FE /* Direction.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8401158B1607A2AF005107FE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8401158C1607A2DD005107FE /* bang.wav */,
+				8401158D1607A2DD005107FE /* laser.wav */,
+				8401158E1607A2DD005107FE /* zap.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		840115921607A2E1005107FE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				840115931607A2F7005107FE /* enter.png */,
+				840115941607A2F7005107FE /* exit.png */,
+				840115951607A2F7005107FE /* ehit.png */,
+				840115961607A2F7005107FE /* mhit.png */,
+				840115971607A2F7005107FE /* phit.png */,
+				840115981607A2F7005107FE /* redfloor.png */,
+				840115991607A2F7005107FE /* floor1.png */,
+				8401159A1607A2F7005107FE /* floor2.png */,
+				8401159B1607A2F7005107FE /* floor3.png */,
+				8401159C1607A2F7005107FE /* floor4.png */,
+				8401159D1607A2F7005107FE /* floor5.png */,
+				8401159E1607A2F7005107FE /* tinybot.png */,
+				8401159F1607A2F7005107FE /* purplebot.png */,
+				840115A01607A2F7005107FE /* redbot.png */,
+				840115A11607A2F7005107FE /* fightpurple.png */,
+				840115A21607A2F7005107FE /* fightred.png */,
+				840115A31607A2F7005107FE /* inventory.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		840115BC1607AA90005107FE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				840115C41607AC74005107FE /* WorldDataStore.h */,
+				840115C51607AC74005107FE /* WorldDataStore.m */,
+				840115CB1607B471005107FE /* World.h */,
+				840115CC1607B473005107FE /* World.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8401153816079CE6005107FE /* RobotGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8401155616079CE6005107FE /* Build configuration list for PBXNativeTarget "RobotGame" */;
+			buildPhases = (
+				8401153516079CE6005107FE /* Sources */,
+				8401153616079CE6005107FE /* Frameworks */,
+				8401153716079CE6005107FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RobotGame;
+			productName = RobotGame;
+			productReference = 8401153916079CE6005107FE /* RobotGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8401153016079CE6005107FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Diana Zmuda";
+			};
+			buildConfigurationList = 8401153316079CE6005107FE /* Build configuration list for PBXProject "RobotGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8401152E16079CE6005107FE;
+			productRefGroup = 8401153A16079CE6005107FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8401153816079CE6005107FE /* RobotGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8401153716079CE6005107FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8401154A16079CE6005107FE /* InfoPlist.strings in Resources */,
+				8401158F1607A2DD005107FE /* bang.wav in Resources */,
+				840115901607A2DD005107FE /* laser.wav in Resources */,
+				840115911607A2DD005107FE /* zap.wav in Resources */,
+				840115A41607A2F7005107FE /* enter.png in Resources */,
+				840115A51607A2F7005107FE /* exit.png in Resources */,
+				840115A61607A2F7005107FE /* ehit.png in Resources */,
+				840115A71607A2F7005107FE /* mhit.png in Resources */,
+				840115A81607A2F7005107FE /* phit.png in Resources */,
+				840115A91607A2F7005107FE /* redfloor.png in Resources */,
+				840115AA1607A2F7005107FE /* floor1.png in Resources */,
+				840115AB1607A2F7005107FE /* floor2.png in Resources */,
+				840115AC1607A2F7005107FE /* floor3.png in Resources */,
+				840115AD1607A2F7005107FE /* floor4.png in Resources */,
+				840115AE1607A2F7005107FE /* floor5.png in Resources */,
+				840115AF1607A2F7005107FE /* tinybot.png in Resources */,
+				840115B01607A2F7005107FE /* purplebot.png in Resources */,
+				840115B11607A2F7005107FE /* redbot.png in Resources */,
+				840115B21607A2F7005107FE /* fightpurple.png in Resources */,
+				840115B31607A2F7005107FE /* fightred.png in Resources */,
+				840115B41607A2F7005107FE /* inventory.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8401153516079CE6005107FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8401154C16079CE6005107FE /* main.m in Sources */,
+				8401155016079CE6005107FE /* AppDelegate.m in Sources */,
+				8401155316079CE6005107FE /* RobotGame.xcdatamodeld in Sources */,
+				8401155B16079DBA005107FE /* LevelViewController.m in Sources */,
+				8401156516079E72005107FE /* LevelView.m in Sources */,
+				8401156816079EC4005107FE /* ControlView.m in Sources */,
+				8401156B16079F7A005107FE /* CombatView.m in Sources */,
+				8401156E16079FA7005107FE /* PlayerView.m in Sources */,
+				8401157116079FD8005107FE /* StatsView.m in Sources */,
+				840115741607A043005107FE /* ItemView.m in Sources */,
+				840115771607A0A1005107FE /* Player.m in Sources */,
+				8401157B1607A0E4005107FE /* Item.m in Sources */,
+				8401157E1607A107005107FE /* Mob.m in Sources */,
+				840115811607A17F005107FE /* Level.m in Sources */,
+				840115841607A1C5005107FE /* Square.m in Sources */,
+				840115871607A1FC005107FE /* Position.m in Sources */,
+				8401158A1607A22F005107FE /* Direction.m in Sources */,
+				840115C61607AC74005107FE /* WorldDataStore.m in Sources */,
+				840115CD1607B476005107FE /* World.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8401154816079CE6005107FE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8401154916079CE6005107FE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8401155416079CE6005107FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8401155516079CE6005107FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8401155716079CE6005107FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RobotGame/RobotGame-Prefix.pch";
+				INFOPLIST_FILE = "RobotGame/RobotGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8401155816079CE6005107FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RobotGame/RobotGame-Prefix.pch";
+				INFOPLIST_FILE = "RobotGame/RobotGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8401153316079CE6005107FE /* Build configuration list for PBXProject "RobotGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8401155416079CE6005107FE /* Debug */,
+				8401155516079CE6005107FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8401155616079CE6005107FE /* Build configuration list for PBXNativeTarget "RobotGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8401155716079CE6005107FE /* Debug */,
+				8401155816079CE6005107FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8401155116079CE6005107FE /* RobotGame.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8401155216079CE6005107FE /* RobotGame.xcdatamodel */,
+			);
+			currentVersion = 8401155216079CE6005107FE /* RobotGame.xcdatamodel */;
+			path = RobotGame.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8401153016079CE6005107FE /* Project object */;
+}

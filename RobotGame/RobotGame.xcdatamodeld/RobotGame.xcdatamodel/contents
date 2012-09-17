@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="11E2705" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Item" syncable="YES">
+        <attribute name="damage" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Level" syncable="YES">
+        <relationship name="world" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="World" inverseName="level" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="Mob" syncable="YES">
+        <relationship name="world" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="World" inverseName="mobs" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="Player" syncable="YES">
+        <attribute name="currentHP" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxHP" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxShields" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="scrap" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="inventory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="left" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="right" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="world" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="World" representedClassName="World" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="level" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Level" inverseName="world" inverseEntity="Level" syncable="YES"/>
+        <relationship name="mobs" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Mob" inverseName="world" inverseEntity="Mob" syncable="YES"/>
+        <relationship name="player" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mob" inverseName="world" inverseEntity="Mob" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="World" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Level" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Player" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Item" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Mob" positionX="160" positionY="192" width="128" height="60"/>
+    </elements>
+</model>

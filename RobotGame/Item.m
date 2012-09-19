@@ -1,22 +1,21 @@
 //
 //  Item.m
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/7/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
 #import "Item.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DataStore.h"
 
 @implementation Item
 
--(void)giveStats {
-    self.type = 1;
-    self.name = @"Super Cool Projectile Launcher";
-    self.damage = 1;
-    self.scrap = 5;
-}
+@dynamic type;
+@dynamic damage;
+@dynamic image;
+@dynamic scrap;
 
 -(void)setupLayer {
     self.layer = [CALayer new];
@@ -26,13 +25,21 @@
     self.layer.contents = (__bridge id)([item CGImage]);
 }
 
--(id)initWithName:(NSString *)name andType:(int)type andDamage:(int)damage {
+-(id)initWithType:(int)type andDamage:(int)damage {
     self = [super init];
     self.type = type;
-    self.name = name;
     self.damage = damage;
     self.scrap = damage*5;
     return self;
 }
+
++(Item*)newWithType:(int)type andDamage:(int)damage {
+    Item *item = [DataStore newItem];
+    item.type = type;
+    item.damage = damage;
+    item.scrap = damage*5;
+    return item;
+}
+
 
 @end

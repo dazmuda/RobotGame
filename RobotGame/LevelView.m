@@ -24,13 +24,19 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     }
     return self;
 }
 
 -(void)renderGrid {
     
-    [self.lvc.level createGrid];
+    //[self.lvc.level createGrid];
+    //THAT WAS HOW WE DID IT BEFORE CORE DATA
+    
+//    [self.lvc.level createSquares];
+//    [self.lvc.level createGridFromSquares];
+    
     //for every key in the grid dictionary
     for(Position *pos in self.lvc.level.grid) {
         //this is the value for that key
@@ -62,20 +68,14 @@
             [self.layer addSublayer:floor];
             
             //if the floor has a mob on it
-            if ([[square.objects objectAtIndex:0] isKindOfClass:[Mob class]]) {
-                Mob *mob = [square.objects objectAtIndex:0];
-                //already set up
-                //[mob setupLayer];
-                
-                mob.layer.frame = CGRectMake(xxx, yyy, 72, 72);
-                [self.layer addSublayer:mob.layer];
+            if (square.mob) {
+                square.mob.layer.frame = CGRectMake(xxx, yyy, 72, 72);
+                [self.layer addSublayer:square.mob.layer];
                 
                 //if the floor has an item on it
-            } else if ([[square.objects objectAtIndex:0] isKindOfClass:[Item class]]) {
-                Item *item = [square.objects objectAtIndex:0];
-                
-                item.layer.frame = CGRectMake(xxx, yyy, 72, 72);
-                [self.layer addSublayer:item.layer];
+            } else if (square.item) {
+                square.item.layer.frame = CGRectMake(xxx, yyy, 72, 72);
+                [self.layer addSublayer:square.item.layer];
             }
         }
         

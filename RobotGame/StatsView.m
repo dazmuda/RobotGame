@@ -220,17 +220,15 @@
     //    [self addSubview:self.rightArm];
     
     //the items in the equipped arms slots
-    Item *leftItem = [self.player.equipped objectForKey:@"left"];
-    ItemView *leftItemView = [[ItemView alloc] initWithFrame:CGRectMake(0, 100, 50, 50) andItem:leftItem];
+    ItemView *leftItemView = [[ItemView alloc] initWithFrame:CGRectMake(0, 100, 50, 50) andItem:self.player.leftArm];
     leftItemView.sv = self;
     [self addSubview:leftItemView];
-    Item *rightItem = [self.player.equipped objectForKey:@"right"];
-    ItemView *rightItemView = [[ItemView alloc] initWithFrame:CGRectMake(50, 100, 50, 50) andItem:rightItem];
+    ItemView *rightItemView = [[ItemView alloc] initWithFrame:CGRectMake(50, 100, 50, 50) andItem:self.player.rightArm];
     rightItemView.sv = self;
     [self addSubview:rightItemView];
     
     //middle row is items in inventory
-    for (Item *item in self.player.items) {
+    for (Item *item in self.player.inventory) {
         ItemView *itemView = [[ItemView alloc] initWithFrame:CGRectMake(0, 50, 50, 50) andItem:item];
         itemView.sv = self;
         itemView.player = self.player;

@@ -1,45 +1,56 @@
 //
 //  Player.h
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/7/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-@class Position;
-@class PlayerView;
+#import <CoreData/CoreData.h>
+
+@class Item, World, Position, PlayerView;
 
 @interface Player : NSManagedObject
 
-@property (strong) NSMutableArray *items;
-@property (strong) NSMutableDictionary *equipped;
-
-@property double currentHP;
+@property int currentHP;
 @property int maxHP;
 @property int maxShield;
+@property int scrap;
+@property int level;
+@property int xp;
 @property int eHit;
 @property int mHit;
 @property int pHit;
-@property int crit;
-@property int scrap;
-@property int level;
-@property double xp;
-
-@property int points;
-@property int ePoints;
 @property int mPoints;
+@property int ePoints;
 @property int pPoints;
+@property int points;
 @property BOOL eBuff;
 @property BOOL mBuff;
 @property BOOL pBuff;
+@property int crit;
 @property BOOL eMove;
 @property BOOL mMove;
 @property BOOL pMove;
+@property int x;
+@property int y;
+@property (nonatomic, retain) World *world;
+@property (nonatomic, retain) NSMutableSet *inventory;
+@property (nonatomic, retain) Item *leftArm;
+@property (nonatomic, retain) Item *rightArm;
 
+@property Position *position;
 @property (strong) PlayerView *pv;
-@property (strong) Position *position;
-
 -(void)beginStats;
+
+@end
+
+@interface Player (CoreDataGeneratedAccessors)
+
+- (void)addInventoryObject:(Item *)value;
+- (void)removeInventoryObject:(Item *)value;
+- (void)addInventory:(NSSet *)values;
+- (void)removeInventory:(NSSet *)values;
 
 @end

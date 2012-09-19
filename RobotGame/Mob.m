@@ -1,22 +1,39 @@
 //
 //  Mob.m
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/7/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
 #import "Mob.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DataStore.h"
 
 @implementation Mob
 
--(void)giveStats {
-    self.maxHP = 15;
-    self.maxShield = 5;
-    self.damage = 3;
-    self.scrap = 10;
-    self.xp = 10;
+@dynamic maxHP;
+@dynamic maxShield;
+@dynamic damage;
+@dynamic scrap;
+@dynamic xp;
+@dynamic image;
+@dynamic type;
+
+-(id)initWithHP:(int)hp andShield:(int)shield andDamage:(int)damage {
+    self = [super init];
+    self.maxHP = hp;
+    self.maxShield = shield;
+    self.damage = damage;
+    return self;
+}
+
++(Mob*)newWithHP:(int)hp andShield:(int)shield andDamage:(int)damage {
+    Mob *mob = [DataStore newMob];
+    mob.maxHP = hp;
+    mob.maxShield = shield;
+    mob.damage = damage;
+    return mob;
 }
 
 -(void)setupLayer {

@@ -10,11 +10,13 @@
 @class Level;
 @class LevelView;
 @class Player;
+@class World;
 
 @interface LevelViewController : UIViewController
 
 @property (strong) Level *level;
 @property (strong) LevelView *levelView;
 @property (strong) Player *player;
+@property (strong) World *world;
 
 @end

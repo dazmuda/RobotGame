@@ -49,24 +49,30 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     //if the item was dragged into an arm spot
-    //int insideRight = CGRectIntersectsRect(self.frame, self.sv.rightArm.frame);
-    //int insideLeft = CGRectIntersectsRect(self.frame, self.sv.leftArm.frame);
-    int insideRight = CGRectIntersectsRect(self.frame, self.sv.right);
-    int insideLeft = CGRectIntersectsRect(self.frame, self.sv.left);
-    int insideInv = CGRectIntersectsRect(self.frame, self.sv.inv);
-    if (insideRight == 1) {
+    BOOL insideRight = CGRectContainsPoint(self.sv.right, self.center);
+    BOOL insideLeft = CGRectContainsPoint(self.sv.left, self.center);
+    BOOL insideInv = CGRectContainsPoint(self.sv.inv, self.center);
+    
+    //place these items into a dictionary
+    //have item
+    
+    if (insideRight) {
         self.frame = CGRectMake(50, 100, 50, 50);
-        //self.layer.sublayers = nil;
-        if ([self.player.items containsObject:self.item] == TRUE) {
-            [self.player.items addObject:[self.player.equipped objectForKey:@"right"]];
-            [self.player.items removeObject:self.item];
-        } else {
-            NSArray *keys = [self.player.equipped allKeysForObject:self.item];
-            for (NSString* key in keys) {
-                [self.player.equipped removeObjectForKey:key];
-            }
+        //if the item is in your inventory
+        if ([self.player.inventory containsObject:self.item]) {
+            //place the current right arm item in inv
+            [self.player.inventory addObject:self.player.rightArm];
+            //remove the current item from inventory
+            [self.player.inventory removeObject:self.item];
+            //place current item in right arm slot
+            self.player.rightArm = self.item;
+            
+        //if the current item is in your left arm
+        } else if (self.item == self.player.leftArm) {
+            //switch the right and left arm items
+            self.player.leftArm = self.player.rightArm;
+            self.player.rightArm = self.item;
         }
-        [self.player.equipped setValue:self.item forKey:@"right"];
         
     }
     if (insideLeft == 1) {
@@ -74,40 +80,30 @@
         self.frame = CGRectMake(0, 100, 50, 50);
         
         //if the item was in your inventory
-        if ([self.player.items containsObject:self.item] == TRUE) {
+        if ([self.player.inventory containsObject:self.item]) {
             //place old equipt in inv
-            [self.player.items addObject:[self.player.equipped objectForKey:@"left"]];
-            //place inv item as equipt
-            //[self.player.equipped setValue:self.item forKey:@"left"];
+            [self.player.inventory addObject:self.player.leftArm];
             //remove item from inv
-            [self.player.items removeObject:self.item];
+            [self.player.inventory removeObject:self.item];
+            //place current item in left arm slot
+            self.player.leftArm = self.item;
             
-            //if the item was equipped
-        } else {
-            //find out which hand it was in
-            NSArray *keys = [self.player.equipped allKeysForObject:self.item];
-            for (NSString* key in keys) {
-                //unequ from other hand
-                [self.player.equipped removeObjectForKey:key];
-                //equip it in the left hand
-                //[self.player.equipped setValue:self.item forKey:@"left"];
-            }
+        //if the item was equipped in your right arm
+        } else if (self.item == self.player.rightArm) {
+            self.player.rightArm = self.player.leftArm;
+            self.player.leftArm = self.item;
         }
-        [self.player.equipped setValue:self.item forKey:@"left"];
+
     }
     if (insideInv == 1) {
-        //lock to spot!
-        self.frame = CGRectMake(0, 50, 50, 50);
         //make sure you are not going inv to inv
-        if ([self.player.items containsObject:self.item] == FALSE) {
+        if ([self.player.inventory containsObject:self.item] == FALSE) {
+            //lock to spot
+            self.frame = CGRectMake(0, 50, 50, 50);
             //add the object to your inventory
-            [self.player.items addObject:self.item];
-            //find which arm held the object
-            NSArray *keys = [self.player.equipped allKeysForObject:self.item];
-            //and remove that object
-            for (NSString* key in keys) {
-                [self.player.equipped removeObjectForKey:key];
-            }
+            [self.player.inventory addObject:self.item];
+            //remove the object from left if it was there
+            
         }
     }
 }

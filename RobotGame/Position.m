@@ -1,8 +1,8 @@
 //
 //  Position.m
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/11/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
@@ -39,5 +39,6 @@
     NSDictionary *dict = @{ @"x" : @(self.x), @"y" : @(self.y) };
     return dict.hash;
 }
+
 
 @end

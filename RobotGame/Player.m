@@ -1,17 +1,44 @@
 //
 //  Player.m
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/7/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
 #import "Player.h"
-#import <QuartzCore/QuartzCore.h>
-#import "Position.h"
 #import "Item.h"
+#import "World.h"
+#import "Position.h"
 
 @implementation Player
+
+@dynamic currentHP;
+@dynamic maxHP;
+@dynamic maxShield;
+@dynamic scrap;
+@dynamic level;
+@dynamic xp;
+@dynamic eHit;
+@dynamic mHit;
+@dynamic pHit;
+@dynamic mPoints;
+@dynamic ePoints;
+@dynamic pPoints;
+@dynamic points;
+@dynamic eBuff;
+@dynamic mBuff;
+@dynamic pBuff;
+@dynamic crit;
+@dynamic eMove;
+@dynamic mMove;
+@dynamic pMove;
+@dynamic world;
+@dynamic inventory;
+@dynamic leftArm;
+@dynamic rightArm;
+@dynamic x;
+@dynamic y;
 
 -(void)beginStats {
     self.currentHP = 20;
@@ -36,10 +63,9 @@
     self.mMove = FALSE;
     self.pMove = FALSE;
     
-    self.items = [NSMutableArray new];
-    Item *item1 = [[Item alloc] initWithName:@"Lame Electric Gun" andType:1 andDamage:1];
-    Item *item2 = [[Item alloc] initWithName:@"Lame Magnetic Gun" andType:2 andDamage:1];
-    self.equipped = [[NSMutableDictionary alloc] initWithObjects:@[ item1, item2 ] forKeys:@[ @"left", @"right" ]];
+    self.rightArm = [Item newWithType:2 andDamage:1];
+    self.leftArm = [Item newWithType:1 andDamage:1];
+    self.inventory = [NSMutableSet setWithObject:[Item newWithType:3 andDamage:1]];
     self.position = [Position withX:1 andY:1];
 }
 

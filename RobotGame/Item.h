@@ -1,23 +1,25 @@
 //
 //  Item.h
-//  Robots
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/7/12.
+//  Created by Diana Zmuda on 9/17/12.
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Item : NSObject
 
-@property (strong) NSString *name;
+@interface Item : NSManagedObject
+
 @property int type;
 @property int damage;
+@property int image;
 @property int scrap;
-@property (strong) CALayer *layer;
 
--(void)giveStats;
+//not in core data
+@property (strong) CALayer *layer;
 -(void)setupLayer;
--(id)initWithName:(NSString*)name andType:(int)type andDamage:(int)damage;
++(Item*)newWithType:(int)type andDamage:(int)damage;
 
 @end

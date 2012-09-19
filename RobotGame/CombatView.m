@@ -17,12 +17,12 @@
 
 @interface CombatView () <AVAudioPlayerDelegate>
 
-@property double mobHP;
-@property double mobShields;
-@property double playerShields;
-@property double eWeapon;
-@property double mWeapon;
-@property double pWeapon;
+@property int mobHP;
+@property int mobShields;
+@property int playerShields;
+@property int eWeapon;
+@property int mWeapon;
+@property int pWeapon;
 @property BOOL mobStunned;
 
 @property UILabel *playerHPLabel;
@@ -81,24 +81,21 @@
     self.mWeapon = 0;
     self.pWeapon = 0;
     
-    //these are the items equipped
-    Item *leftItem = [self.player.equipped objectForKey:@"left"];
-    Item *rightItem = [self.player.equipped objectForKey:@"right"];
     //add to your weapon damage for the left weapon
-    if (leftItem.type == 1) {
-        self.eWeapon += leftItem.damage;
-    } else if (leftItem.type == 2) {
-        self.mWeapon += leftItem.damage;
-    } else if (leftItem.type == 3) {
-        self.pWeapon += leftItem.damage;
+    if (self.player.leftArm.type == 1) {
+        self.eWeapon += self.player.leftArm.damage;
+    } else if (self.player.leftArm.type == 2) {
+        self.mWeapon += self.player.leftArm.damage;
+    } else if (self.player.leftArm.type == 3) {
+        self.pWeapon += self.player.leftArm.damage;
     }
     //and for the right
-    if (rightItem.type == 1) {
-        self.eWeapon += rightItem.damage;
-    } else if (rightItem.type == 2) {
-        self.mWeapon += rightItem.damage;
-    } else if (rightItem.type == 3) {
-        self.pWeapon += rightItem.damage;
+    if (self.player.rightArm.type == 1) {
+        self.eWeapon += self.player.rightArm.damage;
+    } else if (self.player.rightArm.type == 2) {
+        self.mWeapon += self.player.rightArm.damage;
+    } else if (self.player.rightArm.type == 3) {
+        self.pWeapon += self.player.rightArm.damage;
     }
     
     //place a picture of the player
@@ -110,7 +107,7 @@
     //    [self.layer addSublayer:bgLayer];
     
     //if either equipped item is of the right type
-    if (leftItem.type == 1 || rightItem.type == 1) {
+    if (self.player.rightArm.type == 1 || self.player.leftArm.type == 1) {
         //place the button
         self.eButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.eButton.frame = CGRectMake(51, 51, 50, 50);
@@ -120,7 +117,7 @@
         [self addSubview:self.eButton];
     }
     
-    if (leftItem.type == 2 || rightItem.type == 2) {
+    if (self.player.rightArm.type == 2 || self.player.leftArm.type == 2) {
         self.mButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.mButton.frame = CGRectMake(101, 51, 50, 50);
         [self.mButton setImage:[UIImage imageNamed:@"mhit.png"] forState:UIControlStateNormal];
@@ -129,7 +126,7 @@
         [self addSubview:self.mButton];
     }
     
-    if (leftItem.type == 3 || rightItem.type == 3) {
+    if (self.player.rightArm.type == 3 || self.player.leftArm.type == 3) {
         self.pButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.pButton.frame = CGRectMake(151, 51, 50, 50);
         [self.pButton setImage:[UIImage imageNamed:@"phit.png"] forState:UIControlStateNormal];
@@ -160,10 +157,10 @@
 }
 
 -(void)updateLabels {
-    self.playerHPLabel.text = [NSString stringWithFormat:@"player hp = %f", self.player.currentHP];
-    self.playerShieldsLabel.text = [NSString stringWithFormat:@"player shield = %f", self.playerShields];
-    self.mobHPLabel.text = [NSString stringWithFormat:@"mob hp = %f", self.mobHP];
-    self.mobShieldsLabel.text = [NSString stringWithFormat:@"mob shield = %f", self.mobShields];
+    self.playerHPLabel.text = [NSString stringWithFormat:@"player hp = %d", self.player.currentHP];
+    self.playerShieldsLabel.text = [NSString stringWithFormat:@"player shield = %d", self.playerShields];
+    self.mobHPLabel.text = [NSString stringWithFormat:@"mob hp = %d", self.mobHP];
+    self.mobShieldsLabel.text = [NSString stringWithFormat:@"mob shield = %d", self.mobShields];
 }
 
 //you could also set up the labels using layers
@@ -242,9 +239,9 @@
     }
     
     if (self.mobShields <= 0) {
-        self.mobHP = self.mobHP - self.player.mHit - isCrit*self.player.mHit - self.eWeapon;
+        self.mobHP = self.mobHP - self.player.mHit - isCrit*self.player.mHit - self.mWeapon;
     } else {
-        self.mobShields = self.mobShields - self.player.mHit - isCrit*self.player.mHit - self.eWeapon;
+        self.mobShields = self.mobShields - self.player.mHit - isCrit*self.player.mHit - self.mWeapon;
         if (self.mobShields <= 0) {
             float excess = 0 - self.mobShields;
             self.mobHP -= excess;
@@ -273,13 +270,13 @@
     
     if (self.mobShields <= 0) {
         //if their shields are out hit them
-        self.mobHP = self.mobHP - self.player.pHit - isCrit*self.player.pHit - self.eWeapon;
+        self.mobHP = self.mobHP - self.player.pHit - isCrit*self.player.pHit - self.pWeapon;
     } else {
         //else hit their shields
-        self.mobShields = self.mobShields - self.player.pHit - isCrit*self.player.pHit - self.eWeapon;
+        self.mobShields = self.mobShields - self.player.pHit - isCrit*self.player.pHit - self.pWeapon;
         //special buff case
         if (self.player.pBuff == TRUE) {
-            self.mobHP = self.mobHP - .25*self.player.pHit -.25*self.eWeapon;
+            self.mobHP = self.mobHP - .25*(self.player.pHit + self.pWeapon);
         }
         //if this shield hit destroyed shields, the excess hits them
         if (self.mobShields <= 0) {
@@ -328,6 +325,7 @@
         [self.lvc dismissModalViewControllerAnimated:YES];
     }
 }
+
 
 /*
  // Only override drawRect: if you perform custom drawing.

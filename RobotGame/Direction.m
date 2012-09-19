@@ -62,7 +62,7 @@
     self.cv.lvc.player.pv.frame = newFrame;
     [self.cv.lvc.levelView setNeedsDisplay];
     
-    NSLog(@"PLAYER LOC IS (%f, %f)", self.cv.lvc.player.position.x, self.cv.lvc.player.position.y);
+    NSLog(@"PLAYER LOC IS (%d, %d)", self.cv.lvc.player.position.x, self.cv.lvc.player.position.y);
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LevelViewController.h"
+#import "WorldViewController.h"
 
 @implementation AppDelegate
 
@@ -20,7 +21,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.window.rootViewController = [LevelViewController new];
+    //self.window.rootViewController = [LevelViewController new];
+    self.window.rootViewController = [WorldViewController new];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window.backgroundColor = [UIColor whiteColor];

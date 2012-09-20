@@ -7,21 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Player;
 @class LevelViewController;
+@class ItemView;
 
 @interface StatsView : UIView
 
-@property Player *player;
 @property LevelViewController *lvc;
 
 @property CGRect left;
 @property CGRect right;
-@property CGRect inv;
 
-//this stuff is defunct
-@property UIView *leftArm;
-@property UIView *rightArm;
+@property ItemView *inv1Item;
+@property ItemView *inv2Item;
+@property ItemView *inv3Item;
+@property ItemView *inv4Item;
 
 -(void)setupView;
 

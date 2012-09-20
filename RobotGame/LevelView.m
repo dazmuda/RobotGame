@@ -31,12 +31,6 @@
 
 -(void)renderGrid {
     
-    //[self.lvc.level createGrid];
-    //THAT WAS HOW WE DID IT BEFORE CORE DATA
-    
-//    [self.lvc.level createSquares];
-//    [self.lvc.level createGridFromSquares];
-    
     //for every key in the grid dictionary
     for(Position *pos in self.lvc.level.grid) {
         //this is the value for that key
@@ -69,12 +63,14 @@
             
             //if the floor has a mob on it
             if (square.mob) {
+                [square.mob setupLayer];
                 square.mob.layer.frame = CGRectMake(xxx, yyy, 72, 72);
                 [self.layer addSublayer:square.mob.layer];
                 
                 //if the floor has an item on it
             } else if (square.item) {
-                square.item.layer.frame = CGRectMake(xxx, yyy, 72, 72);
+                [square.item setupLayer];
+                square.item.layer.frame = CGRectMake(xxx+20, yyy+20, 40, 40);
                 [self.layer addSublayer:square.item.layer];
             }
         }

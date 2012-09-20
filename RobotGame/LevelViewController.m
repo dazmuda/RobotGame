@@ -15,6 +15,7 @@
 #import "PlayerView.h"
 #import "DataStore.h"
 #import "World.h"
+#import "WorldViewController.h"
 
 @interface LevelViewController ()
 
@@ -27,32 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-//        Level *level = [DataStore newLevel];
-//        level.lvc = self;
-//        self.level = level;
-//        
-//        self.player = [DataStore newPlayer];
-//        [self.player beginStats];
-//        
-//        self.levelView = [[LevelView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-//        self.levelView.bounds = CGRectMake(0, 0, 320, 480);
-//        self.levelView.lvc = self;
-//        [self.levelView renderGrid];
-//        
-//        ControlView *controlView = [[ControlView alloc] initWithFrame:CGRectMake(100, 300, 90, 90)];
-//        controlView.lvc = self;
-//        
-//        PlayerView *playerView = [[PlayerView alloc] initWithFrame:CGRectMake(72, 72, 72, 72)];
-//        playerView.lvc = self;
-//        
-//        UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-//        [parentView addSubview:self.levelView];
-//        [parentView addSubview:controlView];
-//        [parentView addSubview:playerView];
-//        self.view = parentView;
-//        
-//        [DataStore save];
     }
     return self;
 }
@@ -61,8 +36,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(id)initWithWorld:(World*)world andWVC:(WorldViewController*)wvc {
+    self = [super init];
+    self.world = world;
+    self.wvc = wvc;
     
-    //you should set the level and player here, world is already set but it was set after init
     self.level = self.world.level;
     self.level.lvc = self;
     self.player = self.world.player;
@@ -72,8 +52,9 @@
     self.levelView.lvc = self;
     [self.levelView renderGrid];
     
-    ControlView *controlView = [[ControlView alloc] initWithFrame:CGRectMake(100, 300, 90, 90)];
+    ControlView *controlView = [[ControlView alloc] initWithFrame:CGRectMake(100, 300, 220, 180)];
     controlView.lvc = self;
+    [controlView makeArrowButtons];
     
     PlayerView *playerView = [[PlayerView alloc] initWithFrame:CGRectMake(72, 72, 72, 72)];
     playerView.lvc = self;
@@ -84,6 +65,20 @@
     [parentView addSubview:playerView];
     self.view = parentView;
     
+    return self;
+}
+
+-(void)diedInCombat {
+    //dismissing combatview
+    [self dismissViewControllerAnimated:YES completion:^{
+        //call a method inside of the worldviewcontroller!!!
+        [self.wvc diedInWorld:self.world];
+    }];
+}
+
+-(void)wonInCombat {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [DataStore save];
 }
 
 - (void)viewDidUnload

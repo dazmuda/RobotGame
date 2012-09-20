@@ -82,6 +82,24 @@ NSManagedObjectModel* storeModel;
     return result;
 }
 
++(NSArray*)allScores {
+    //lets make a request
+    NSFetchRequest* req = [NSFetchRequest new];
+    //we are using teh store model to make requests from the database
+    req.entity = [[DataStore model].entitiesByName objectForKey:@"Score"];
+    
+    NSError* err;
+    //now execute the request using the context
+    NSArray* result = [[DataStore context] executeFetchRequest:req error:&err];
+    //this gave you an array of the results of the request
+    if (!result) {
+        [NSException raise:@"Fetch failed!"
+                    format:@"Reason: %@", [err localizedDescription]];
+    }
+    
+    return result;
+}
+
 +(World*)newWorld {
     World* new = [NSEntityDescription insertNewObjectForEntityForName:@"World" inManagedObjectContext:[DataStore context]];
     return new;
@@ -117,12 +135,21 @@ NSManagedObjectModel* storeModel;
     return new;
 }
 
++(Score*)newScore {
+    Score *new = [NSEntityDescription insertNewObjectForEntityForName:@"Score" inManagedObjectContext:[DataStore context]];
+    return new;
+}
+
 +(void)save {
     NSError* err;
     if (![[DataStore context] save:&err]) {
         [NSException raise:@"Save failed!"
                     format:@"Reason: %@", [err localizedDescription]];
     }
+}
+
++(void)destroy:(World*)world {
+    [[DataStore context] deleteObject:world];
 }
 
 @end

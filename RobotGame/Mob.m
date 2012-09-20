@@ -33,6 +33,8 @@
     mob.maxHP = hp;
     mob.maxShield = shield;
     mob.damage = damage;
+    mob.scrap = mob.maxHP + mob.maxShield + mob.damage;
+    mob.xp = mob.maxHP + mob.maxShield + mob.damage;
     return mob;
 }
 

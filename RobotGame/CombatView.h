@@ -11,11 +11,19 @@
 @class Mob;
 @class LevelViewController;
 
+@protocol CombatViewDelegate <NSObject>
+
+-(void)diedInCombat;
+-(void)wonInCombat;
+
+@end
+
 @interface CombatView : UIView
 
-@property Player *player;
-@property Mob *mob;
-@property LevelViewController *lvc;
+@property (strong, nonatomic) Player *player;
+@property (strong, nonatomic) Mob *mob;
+//@property (weak, nonatomic) LevelViewController *lvc;
+@property (weak, nonatomic) NSObject <CombatViewDelegate> *delegate;
 
 -(void)setupWithBlock:(void(^)(void))block;
 

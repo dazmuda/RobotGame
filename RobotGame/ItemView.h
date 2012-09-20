@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 @class StatsView;
-@class Player;
 @class Item;
 
 @interface ItemView : UIView
 
 @property StatsView* sv;
 @property Item* item;
-@property Player* player;
 
-- (id)initWithFrame:(CGRect)frame andItem:(Item*)item;
+- (id)initWithFrame:(CGRect)frame andItem:(Item*)item andSV:(StatsView*)sv;
 
 @end

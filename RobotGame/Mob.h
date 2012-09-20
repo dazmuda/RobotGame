@@ -23,7 +23,6 @@
 //not in core data
 @property (strong) CALayer *layer;
 -(void)setupLayer;
--(id)initWithHP:(int)hp andShield:(int)shield andDamage:(int)damage;
 +(Mob*)newWithHP:(int)hp andShield:(int)shield andDamage:(int)damage;
 
 @end

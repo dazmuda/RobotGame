@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class World;
 
 @interface WorldViewController : UIViewController
+
+-(void)diedInWorld:(World*)world;
+-(void)exitedGame;
 
 @end

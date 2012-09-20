@@ -36,13 +36,18 @@
 @property int x;
 @property int y;
 @property (nonatomic, retain) World *world;
-@property (nonatomic, retain) NSMutableSet *inventory;
 @property (nonatomic, retain) Item *leftArm;
 @property (nonatomic, retain) Item *rightArm;
+@property (nonatomic, retain) Item *inv1;
+@property (nonatomic, retain) Item *inv2;
+@property (nonatomic, retain) Item *inv3;
+@property (nonatomic, retain) Item *inv4;
 
 @property Position *position;
 @property (strong) PlayerView *pv;
 -(void)beginStats;
+-(BOOL)didLevelUp;
+-(void)loadPosition;
 
 @end
 
@@ -50,7 +55,5 @@
 
 - (void)addInventoryObject:(Item *)value;
 - (void)removeInventoryObject:(Item *)value;
-- (void)addInventory:(NSSet *)values;
-- (void)removeInventory:(NSSet *)values;
 
 @end

@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Player.h"
 #import "Item.h"
+#import "LevelViewController.h"
 
 @implementation ItemView
 
@@ -23,18 +24,24 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame andItem:(Item*)item {
+- (id)initWithFrame:(CGRect)frame andItem:(Item*)item andSV:(StatsView*)sv{
     self = [super initWithFrame:frame];
     //set the item
     self.item = item;
+    self.sv = sv;
     
     //place a picture of the item
-    CALayer *itemLayer = [CALayer new];
-    itemLayer.bounds = CGRectMake(0,0,50,50);
-    itemLayer.frame = CGRectMake(0,0,50,50);
-    UIImage *itemImage = [UIImage imageNamed:@"red.png"];
-    itemLayer.contents = (__bridge id)([itemImage CGImage]);
-    [self.layer addSublayer:itemLayer];
+//    CALayer *itemLayer = [CALayer new];
+//    itemLayer.bounds = CGRectMake(0,0,50,50);
+//    itemLayer.frame = CGRectMake(0,0,50,50);
+//    UIImage *itemImage = [UIImage imageNamed:@"phit.png"];
+//    itemLayer.contents = (__bridge id)([itemImage CGImage]);
+//    [self.layer addSublayer:itemLayer];
+    
+    //place a pic using the item's layer
+    [self.item setupLayer];
+    self.item.layer.frame = CGRectMake(0,0,50,50);
+    [self.layer addSublayer:self.item.layer];
     
     return self;
 }
@@ -51,61 +58,72 @@
     //if the item was dragged into an arm spot
     BOOL insideRight = CGRectContainsPoint(self.sv.right, self.center);
     BOOL insideLeft = CGRectContainsPoint(self.sv.left, self.center);
-    BOOL insideInv = CGRectContainsPoint(self.sv.inv, self.center);
     
-    //place these items into a dictionary
-    //have item
-    
+    //try to put it inside right arm
     if (insideRight) {
-        self.frame = CGRectMake(50, 100, 50, 50);
-        //if the item is in your inventory
-        if ([self.player.inventory containsObject:self.item]) {
-            //place the current right arm item in inv
-            [self.player.inventory addObject:self.player.rightArm];
-            //remove the current item from inventory
-            [self.player.inventory removeObject:self.item];
-            //place current item in right arm slot
-            self.player.rightArm = self.item;
-            
-        //if the current item is in your left arm
-        } else if (self.item == self.player.leftArm) {
-            //switch the right and left arm items
-            self.player.leftArm = self.player.rightArm;
-            self.player.rightArm = self.item;
+        //lock to right arm spot
+        self.frame = self.sv.right;
+        //your item is in the left arm
+        if (self.item == self.sv.lvc.player.leftArm) {
+            //place the right arm item in your left arm
+            self.sv.lvc.player.leftArm = self.sv.lvc.player.rightArm;
+            //place the current item in the right arm
+            self.sv.lvc.player.rightArm = self.item;
+            [self.sv setupView];
+        //your item is in the first inv slot
+        } else if (self.item == self.sv.lvc.player.inv1) {
+            //place the right arm item in your inv slot
+            self.sv.lvc.player.inv1 = self.sv.lvc.player.rightArm;
+            self.sv.lvc.player.rightArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv2) {
+            self.sv.lvc.player.inv2 = self.sv.lvc.player.rightArm;
+            self.sv.lvc.player.rightArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv3) {
+            self.sv.lvc.player.inv3 = self.sv.lvc.player.rightArm;
+            self.sv.lvc.player.rightArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv4) {
+            self.sv.lvc.player.inv4 = self.sv.lvc.player.rightArm;
+            self.sv.lvc.player.rightArm = self.item;
+            [self.sv setupView];
         }
-        
     }
+    
+    //try to put it inside left arm
     if (insideLeft == 1) {
-        //lock to spot!
-        self.frame = CGRectMake(0, 100, 50, 50);
-        
-        //if the item was in your inventory
-        if ([self.player.inventory containsObject:self.item]) {
-            //place old equipt in inv
-            [self.player.inventory addObject:self.player.leftArm];
-            //remove item from inv
-            [self.player.inventory removeObject:self.item];
-            //place current item in left arm slot
-            self.player.leftArm = self.item;
-            
-        //if the item was equipped in your right arm
-        } else if (self.item == self.player.rightArm) {
-            self.player.rightArm = self.player.leftArm;
-            self.player.leftArm = self.item;
+        //lock to left arm spot
+        self.frame = self.sv.left;
+        //your item is in the right arm
+        if (self.item == self.sv.lvc.player.rightArm) {
+            //place the left arm item in your right arm
+            self.sv.lvc.player.rightArm = self.sv.lvc.player.leftArm;
+            //place the current item in the left arm
+            self.sv.lvc.player.leftArm = self.item;
+            [self.sv setupView];
+        //your item is in the first inv slot
+        } else if (self.item == self.sv.lvc.player.inv1) {
+            //place the left arm item in your inv slot
+            self.sv.lvc.player.inv1 = self.sv.lvc.player.leftArm;
+            self.sv.lvc.player.leftArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv2) {
+            self.sv.lvc.player.inv2 = self.sv.lvc.player.leftArm;
+            self.sv.lvc.player.leftArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv3) {
+            self.sv.lvc.player.inv3 = self.sv.lvc.player.leftArm;
+            self.sv.lvc.player.leftArm = self.item;
+            [self.sv setupView];
+        } else if (self.item == self.sv.lvc.player.inv3) {
+            self.sv.lvc.player.inv3 = self.sv.lvc.player.leftArm;
+            self.sv.lvc.player.leftArm = self.item;
+            [self.sv setupView];
         }
 
     }
-    if (insideInv == 1) {
-        //make sure you are not going inv to inv
-        if ([self.player.inventory containsObject:self.item] == FALSE) {
-            //lock to spot
-            self.frame = CGRectMake(0, 50, 50, 50);
-            //add the object to your inventory
-            [self.player.inventory addObject:self.item];
-            //remove the object from left if it was there
-            
-        }
-    }
+    
 }
 
 /*

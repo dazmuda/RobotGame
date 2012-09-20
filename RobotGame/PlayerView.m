@@ -32,7 +32,6 @@
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UIViewController *pvc = [UIViewController new];
     StatsView *statsView = [[StatsView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    statsView.player = self.lvc.player;
     statsView.lvc = self.lvc;
     [statsView setupView];
     pvc.view = statsView;

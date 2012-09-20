@@ -12,5 +12,6 @@
 @interface ControlView : UIView
 
 @property LevelViewController *lvc;
+- (void) makeArrowButtons;
 
 @end

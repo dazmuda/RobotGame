@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-@class Player, Level;
+@class Player, Level, Score;
 
 
 @interface World : NSManagedObject
@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) Level *level;
+@property (strong, nonatomic) Score *score;
 
 @end

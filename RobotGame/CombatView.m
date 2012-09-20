@@ -12,8 +12,12 @@
 #import "Mob.h"
 #import "LevelViewController.h"
 #import "Item.h"
+#import "WorldViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import "DataStore.h"
+#import "World.h"
+#import "Score.h"
 
 @interface CombatView () <AVAudioPlayerDelegate>
 
@@ -311,6 +315,17 @@
     }
     //if the mob was stunned it is no longer stunned
     self.mobStunned = FALSE;
+    
+    if (self.player.currentHP <= 0) {
+        //DISMISS ALL THE THINGS
+        [self.delegate diedInCombat];
+        //push a new view controller that tells you you lost
+        //and has a link back to the world view controller
+        //how to dismiss the lvc?
+        
+        //save some scores you got TO THE DATASTORE!!!
+        //remove the world from the datastore!
+    }
 }
 
 //this method is called every time the animation finishes
@@ -321,11 +336,37 @@
     //it removes the layer
     [self.currentAnimation removeFromSuperlayer];
     [self updateLabels];
-    if (self.mobHP <= 0) {
-        [self.lvc dismissModalViewControllerAnimated:YES];
-    }
+    [self isMobDead];
 }
 
+-(void)isMobDead {
+    if (self.mobHP <= 0) {
+        //lock the buttons
+        self.eButton.enabled = FALSE;
+        self.mButton.enabled = FALSE;
+        self.pButton.enabled = FALSE;
+        //indicate on the screen
+        UILabel *winLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
+        winLabel.text = @"GORT FTW";
+        winLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+        [self addSubview:winLabel];
+        //grab their stuff and check level up
+        self.player.xp += self.mob.xp;
+        self.player.scrap += self.mob.scrap;
+        if ([self.player didLevelUp]) {
+            //indicate on the screen
+            UILabel *dingLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 100)];
+            dingLabel.text = @"DING GRATZ";
+            dingLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+            [self addSubview:dingLabel];
+        }
+        //increment score
+        self.player.world.score.wins += 1;
+        //then wait a few seconds and dismiss
+        [self.delegate performSelector:@selector(wonInCombat) withObject:nil afterDelay:1];
+        //[self performSelector:@selector(backToLevel) withObject:self afterDelay:1];
+    }
+}
 
 /*
  // Only override drawRect: if you perform custom drawing.

@@ -55,6 +55,7 @@
 		840115E51607F625005107FE /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115E41607F624005107FE /* Square.m */; };
 		840115E81607F7F7005107FE /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115E71607F7F6005107FE /* Level.m */; };
 		840115EF16092847005107FE /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115EE16092844005107FE /* WorldViewController.m */; };
+		840115FE160BAECC005107FE /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115FD160BAEC8005107FE /* Score.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,8 @@
 		840115E71607F7F6005107FE /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		840115ED16092842005107FE /* WorldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldViewController.h; sourceTree = "<group>"; };
 		840115EE16092844005107FE /* WorldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldViewController.m; sourceTree = "<group>"; };
+		840115FC160BAEC4005107FE /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		840115FD160BAEC8005107FE /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,13 +187,10 @@
 				8401154E16079CE6005107FE /* AppDelegate.h */,
 				8401154F16079CE6005107FE /* AppDelegate.m */,
 				8401155116079CE6005107FE /* RobotGame.xcdatamodeld */,
-				8401155916079DBA005107FE /* LevelViewController.h */,
-				8401155A16079DBA005107FE /* LevelViewController.m */,
-				840115ED16092842005107FE /* WorldViewController.h */,
-				840115EE16092844005107FE /* WorldViewController.m */,
 				840115BC1607AA90005107FE /* CoreData */,
 				840115921607A2E1005107FE /* Images */,
 				8401158B1607A2AF005107FE /* Audio */,
+				840115FB16094ED3005107FE /* Controllers */,
 				8401156216079E5B005107FE /* Views */,
 				840115781607A0A5005107FE /* Models */,
 				8401154616079CE6005107FE /* Supporting Files */,
@@ -288,10 +288,23 @@
 			children = (
 				840115C41607AC74005107FE /* DataStore.h */,
 				840115C51607AC74005107FE /* DataStore.m */,
+				840115FC160BAEC4005107FE /* Score.h */,
+				840115FD160BAEC8005107FE /* Score.m */,
 				840115CB1607B471005107FE /* World.h */,
 				840115CC1607B473005107FE /* World.m */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		840115FB16094ED3005107FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8401155916079DBA005107FE /* LevelViewController.h */,
+				8401155A16079DBA005107FE /* LevelViewController.m */,
+				840115ED16092842005107FE /* WorldViewController.h */,
+				840115EE16092844005107FE /* WorldViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +409,7 @@
 				840115E51607F625005107FE /* Square.m in Sources */,
 				840115E81607F7F7005107FE /* Level.m in Sources */,
 				840115EF16092847005107FE /* WorldViewController.m in Sources */,
+				840115FE160BAECC005107FE /* Score.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +435,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -436,6 +451,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -448,7 +465,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -457,6 +475,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

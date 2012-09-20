@@ -10,6 +10,8 @@
 #import "Item.h"
 #import "World.h"
 #import "Position.h"
+#import "Score.h"
+#import "DataStore.h"
 
 @implementation Player
 
@@ -34,11 +36,14 @@
 @dynamic mMove;
 @dynamic pMove;
 @dynamic world;
-@dynamic inventory;
 @dynamic leftArm;
 @dynamic rightArm;
 @dynamic x;
 @dynamic y;
+@dynamic inv1;
+@dynamic inv2;
+@dynamic inv3;
+@dynamic inv4;
 
 -(void)beginStats {
     self.currentHP = 20;
@@ -63,10 +68,35 @@
     self.mMove = FALSE;
     self.pMove = FALSE;
     
+    self.x = 1;
+    self.y = 1;
+    //right now x and y aren't being changed or saved
+    
     self.rightArm = [Item newWithType:2 andDamage:1];
     self.leftArm = [Item newWithType:1 andDamage:1];
-    self.inventory = [NSMutableSet setWithObject:[Item newWithType:3 andDamage:1]];
-    self.position = [Position withX:1 andY:1];
+    [self loadPosition];
+}
+
+-(void)loadPosition {
+    self.position = [Position withX:self.x andY:self.y];
+}
+
+-(BOOL)didLevelUp {
+    int requiredXP = self.level*50;
+    if (self.xp >=requiredXP) {
+        self.xp -=requiredXP;
+        self.level += 1;
+        self.points += 1;
+        self.crit += 1;
+        self.maxHP += self.level*2;
+        self.maxShield += self.level;
+        self.currentHP = self.maxHP;
+        self.world.score.level += 1;
+        [DataStore save];
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 @end

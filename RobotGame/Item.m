@@ -20,8 +20,12 @@
 -(void)setupLayer {
     self.layer = [CALayer new];
     self.layer.bounds = CGRectMake(0,0,72,72);
-    
-    UIImage *item = [UIImage imageNamed:@"redbot.png"];
+    UIImage *item = [UIImage imageNamed:@"phit.png"];
+    if (self.type == 1) {
+        item = [UIImage imageNamed:@"ehit.png"];
+    } else if (self.type == 2) {
+        item = [UIImage imageNamed:@"mhit.png"];
+    }
     self.layer.contents = (__bridge id)([item CGImage]);
 }
 

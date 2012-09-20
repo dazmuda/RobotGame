@@ -24,9 +24,8 @@
 @dynamic squares;
 @dynamic world;
 
+//previously, created a grid without coredata
 -(void)createGrid {
-        
-    //self.player = [WorldDataStore newPlayer];
     
     //Mob *mob = [[Mob alloc] initWithHP:10 andShield:5 andDamage:2];
     Mob *mob = [Mob newWithHP:10 andShield:5 andDamage:2];
@@ -99,29 +98,26 @@
     self.grid = [NSMutableDictionary dictionaryWithDictionary:dictionary];
 }
 
-//from the squares, un-data them
-//create position objects using their xy
-//create squares using their stats
-
+//create a square set for coredata
 -(void)createSquares {
     NSMutableSet *squareSet = [NSMutableSet new];
     
     [squareSet addObject:[Square floorWithX:1 andY:1]];
     
     Mob *mob = [Mob newWithHP:10 andShield:5 andDamage:2];
-    [mob setupLayer];
+//    [mob setupLayer];
     Square *mobSquare = [Square floorWithX:1 andY:2];
     mobSquare.mob = mob;
     [squareSet addObject:mobSquare];
     
-    Mob *mobHard = [Mob newWithHP:10 andShield:7 andDamage:3];
-    [mobHard setupLayer];
+    Mob *mobHard = [Mob newWithHP:10 andShield:7 andDamage:15];
+//    [mobHard setupLayer];
     Square *mobHardSquare = [Square floorWithX:1 andY:3];
     mobHardSquare.mob = mobHard;
     [squareSet addObject:mobHardSquare];
     
     Item *item = [Item newWithType:3 andDamage:2];
-    [item setupLayer];
+//    [item setupLayer];
     Square *itemSquare = [Square floorWithX:1 andY:4];
     itemSquare.item = item;
     [squareSet addObject:itemSquare];
@@ -134,6 +130,7 @@
     self.squares = [NSSet setWithSet:squareSet];
 }
 
+//create a grid to use for moving around
 -(void)createGridFromSquares {
     self.grid = [NSMutableDictionary new];
     for (Square *square in self.squares) {
@@ -163,13 +160,14 @@
                     [[square.mob layer] removeFromSuperlayer];
                     square.mob = nil;
                 }];
-                comView.lvc = self.lvc;
+                //comView.lvc = self.lvc;
+                comView.delegate = self.lvc;
                 cvc.view = comView;
                 [self.lvc presentModalViewController:cvc animated:YES];
                 
             } else if (square.item) {
                 //take item
-                [self.lvc.player.inventory setByAddingObject:square.item];
+                self.lvc.player.inv1 = square.item;
                 //remove item layer and object
                 [[square.item layer] removeFromSuperlayer];
                 square.item = nil;

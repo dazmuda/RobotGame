@@ -39,20 +39,4 @@
     return floor;
 }
 
-//old stuff
-
-+(Square*)wallSquare {
-    //replace [Square new] with the datastore new method
-    Square *wall = [DataStore newSquare];
-    wall.isWall = TRUE;
-    return wall;
-}
-
-+(Square*)floorSquare {
-    Square *floor = [DataStore newSquare];
-    floor.isWall = FALSE;
-    return floor;
-}
-
-
 @end

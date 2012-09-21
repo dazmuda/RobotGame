@@ -20,7 +20,6 @@
 @property LevelViewController *lvc;
 @property (strong) NSMutableDictionary *grid;
 
--(void)createGrid;
 -(void)createSquares;
 -(void)createGridFromSquares;
 -(void)checkPlayerPos:(Position*)playerPos;

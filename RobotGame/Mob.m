@@ -20,21 +20,14 @@
 @dynamic image;
 @dynamic type;
 
--(id)initWithHP:(int)hp andShield:(int)shield andDamage:(int)damage {
-    self = [super init];
-    self.maxHP = hp;
-    self.maxShield = shield;
-    self.damage = damage;
-    return self;
-}
-
-+(Mob*)newWithHP:(int)hp andShield:(int)shield andDamage:(int)damage {
++(Mob*)newWithHP:(int)hp andShield:(int)shield andDamage:(int)damage andImage:(int)img {
     Mob *mob = [DataStore newMob];
     mob.maxHP = hp;
     mob.maxShield = shield;
     mob.damage = damage;
     mob.scrap = mob.maxHP + mob.maxShield + mob.damage;
     mob.xp = mob.maxHP + mob.maxShield + mob.damage;
+    mob.image = img;
     return mob;
 }
 
@@ -44,6 +37,11 @@
     self.layer.position = CGPointMake(0, 0);
     
     UIImage *mob = [UIImage imageNamed:@"purplebot.png"];
+    if (self.image == 2) {
+        mob = [UIImage imageNamed:@"redbot.png"];
+    } else if (self.image == 3) {
+        mob = [UIImage imageNamed:@"bluebot.png"];
+    }
     self.layer.contents = (__bridge id)([mob CGImage]);
 }
 

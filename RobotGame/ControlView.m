@@ -38,7 +38,7 @@
     [self addSubview:leftDirection];
     Direction *rightDirection = [[Direction alloc] initWithFrame:CGRectMake(60, 30, 30, 30) andCV:self andChangeY:0 andChangeX:1];
     [self addSubview:rightDirection];
-    UIButton *worldButton = [[UIButton alloc] initWithFrame:CGRectMake(190, 150, 30, 30)];
+    UIButton *worldButton = [[UIButton alloc] initWithFrame:CGRectMake(170, 70, 30, 30)];
     [worldButton addTarget:self.lvc.wvc action:@selector(exitedGame) forControlEvents:UIControlEventTouchUpInside];
     [worldButton setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
     [self addSubview:worldButton];

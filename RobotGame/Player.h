@@ -48,6 +48,9 @@
 -(void)beginStats;
 -(BOOL)didLevelUp;
 -(void)loadPosition;
+-(void)increaseEPoints;
+-(void)increaseMPoints;
+-(void)increasePPoints;
 
 @end
 

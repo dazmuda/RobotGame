@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Item.h"
 #import "DataStore.h"
+#import "UpgradeView.h"
 
 @interface StatsView ()
 @property UILabel *currentHP;
@@ -58,27 +59,6 @@
     }
     
     //place the buttons
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button1.frame = CGRectMake(0, 350, 50, 50);
-    [button1 setImage:[UIImage imageNamed:@"ehit.png"] forState:UIControlStateNormal];
-    button1.adjustsImageWhenHighlighted = NO;
-    [button1 addTarget:self action:@selector(increaseEPoints) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button1];
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.frame = CGRectMake(50, 350, 50, 50);
-    [button2 setImage:[UIImage imageNamed:@"mhit.png"] forState:UIControlStateNormal];
-    button2.adjustsImageWhenHighlighted = NO;
-    [button2 addTarget:self action:@selector(increaseMPoints) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button2];
-    
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button3.frame = CGRectMake(100, 350, 50, 50);
-    [button3 setImage:[UIImage imageNamed:@"phit.png"] forState:UIControlStateNormal];
-    button3.adjustsImageWhenHighlighted = NO;
-    [button3 addTarget:self action:@selector(increasePPoints) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button3];
-    
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     button4.frame = CGRectMake(40, 430, 50, 50);
     [button4 setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
@@ -93,6 +73,13 @@
     [button5 addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button5];
     
+    UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button6.frame = CGRectMake(100, 430, 50, 50);
+    [button6 setImage:[UIImage imageNamed:@"skills.png"] forState:UIControlStateNormal];
+    button6.adjustsImageWhenHighlighted = NO;
+    [button6 addTarget:self action:@selector(upgrade) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button6];
+    
     [self renderInventory];
     
     //place the labels
@@ -104,97 +91,56 @@
     self.maxHP.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     self.maxHP.font = [self.maxHP.font fontWithSize:14];
     [self addSubview:self.maxHP];
-    self.maxShield = [[UILabel alloc] initWithFrame:CGRectMake(250, 290, 100, 15)];
+    self.maxShield = [[UILabel alloc] initWithFrame:CGRectMake(250, 292, 100, 15)];
     self.maxShield.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     self.maxShield.font = [self.maxShield.font fontWithSize:14];
     [self addSubview:self.maxShield];
-    self.crit = [[UILabel alloc] initWithFrame:CGRectMake(250, 305, 100, 15)];
+    self.crit = [[UILabel alloc] initWithFrame:CGRectMake(250, 310, 100, 15)];
     self.crit.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     self.crit.font = [self.crit.font fontWithSize:14];
     [self addSubview:self.crit];
     
+    self.ePoints = [[UILabel alloc] initWithFrame:CGRectMake(250, 328, 100, 15)];
+    self.ePoints.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    self.ePoints.font = [self.ePoints.font fontWithSize:14];
+    [self addSubview:self.ePoints];
+    self.mPoints = [[UILabel alloc] initWithFrame:CGRectMake(250, 345, 100, 15)];
+    self.mPoints.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    self.mPoints.font = [self.mPoints.font fontWithSize:14];
+    [self addSubview:self.mPoints];
+    self.pPoints = [[UILabel alloc] initWithFrame:CGRectMake(250, 362, 100, 15)];
+    self.pPoints.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    self.pPoints.font = [self.pPoints.font fontWithSize:14];
+    [self addSubview:self.pPoints];
     
-    
+    self.points = [[UILabel alloc] initWithFrame:CGRectMake(250, 382, 100, 15)];
+    self.points.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    self.points.font = [self.points.font fontWithSize:14];
+    [self addSubview:self.points];
     self.scrap = [[UILabel alloc] initWithFrame:CGRectMake(250, 400, 100, 15)];
     self.scrap.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.scrap];
     self.scrap.font = [self.crit.font fontWithSize:14];
+    [self addSubview:self.scrap];
     self.level = [[UILabel alloc] initWithFrame:CGRectMake(250, 415, 100, 15)];
     self.level.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.level];
     self.level.font = [self.crit.font fontWithSize:14];
-    
-    
-    //    self.ePoints = [[UILabel alloc] initWithFrame:CGRectMake(250, 305, 100, 15)];
-    //    self.ePoints.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    //    [self addSubview:self.ePoints];
-    //    self.points = [[UILabel alloc] initWithFrame:CGRectMake(250, 320, 100, 15)];
-    //    self.points.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    //    [self addSubview:self.points];
+    [self addSubview:self.level];
     
     [self updateLabels];
     
 }
 
 -(void)updateLabels {
-    self.currentHP.text = [NSString stringWithFormat:@"%ld", lroundf(self.lvc.player.currentHP)];
+    self.currentHP.text = [NSString stringWithFormat:@"%d", self.lvc.player.currentHP];
     self.maxHP.text = [NSString stringWithFormat:@"%d", self.lvc.player.maxHP];
     self.maxShield.text = [NSString stringWithFormat:@"%d", self.lvc.player.maxShield];
     self.crit.text = [NSString stringWithFormat:@"%d", self.lvc.player.crit];
-    
+    self.ePoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.ePoints];
+    self.mPoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.mPoints];
+    self.pPoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.pPoints];
+    self.points.text = [NSString stringWithFormat:@"%d", self.lvc.player.points];
     self.scrap.text = [NSString stringWithFormat:@"%d", self.lvc.player.scrap];
     self.level.text = [NSString stringWithFormat:@"%d", self.lvc.player.level];
-    
-    self.ePoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.ePoints];
-    self.points.text = [NSString stringWithFormat:@"%d", self.lvc.player.points];
-}
-
--(void)increaseEPoints {
-    if (self.lvc.player.points >0) {
-        self.lvc.player.ePoints += 1;
-        self.lvc.player.points -= 1;
-        self.lvc.player.eHit += 1;
-        self.lvc.player.crit += 1;
-        if (self.lvc.player.ePoints == 3) {
-            self.lvc.player.eBuff = TRUE;
-        }
-        if (self.lvc.player.ePoints == 6) {
-            self.lvc.player.eMove = TRUE;
-        }
-        [self updateLabels];
-    }
-}
-
--(void)increaseMPoints {
-    if (self.lvc.player.points >0) {
-        self.lvc.player.mPoints += 1;
-        self.lvc.player.points -= 1;
-        self.lvc.player.mHit += 1;
-        self.lvc.player.maxShield += 1;
-        if (self.lvc.player.mPoints == 3) {
-            self.lvc.player.mBuff = TRUE;
-        }
-        if (self.lvc.player.mPoints == 6) {
-            self.lvc.player.mMove = TRUE;
-        }
-        [self updateLabels];
-    }
-}
-
--(void)increasePPoints {
-    if (self.lvc.player.points >0) {
-        self.lvc.player.pPoints += 1;
-        self.lvc.player.points -= 1;
-        self.lvc.player.pHit += 1;
-        self.lvc.player.maxHP += 2;
-        if (self.lvc.player.mPoints == 3) {
-            self.lvc.player.mBuff = TRUE;
-        }
-        if (self.lvc.player.mPoints == 6) {
-            self.lvc.player.mMove = TRUE;
-        }
-        [self updateLabels];
-    }
 }
 
 -(void)repair {
@@ -218,30 +164,10 @@
 -(void)renderInventory {
     
     //the rects for checking if you drag into arm slots
-    self.left = CGRectMake(120, 200, 50, 50);
-    self.right = CGRectMake(180, 200, 50, 50);
+    self.left = CGRectMake(125, 196, 50, 50);
+    self.right = CGRectMake(182, 196, 50, 50);
     
-    //render the images in the arm slots
-//    UIView *leftView = [[UIView alloc] initWithFrame:self.left];
-//    UIImage *leftViewItem = [UIImage imageNamed:@"phit.png"];
-//    if (self.lvc.player.leftArm.type == 1) {
-//        leftViewItem = [UIImage imageNamed:@"ehit.png"];
-//    } else if (self.lvc.player.leftArm.type == 2) {
-//        leftViewItem = [UIImage imageNamed:@"mhit.png"];
-//    }
-//    leftView.backgroundColor = [UIColor colorWithPatternImage:leftViewItem];
-//    [self addSubview:leftView];
-//    
-//    UIView *rightView = [[UIView alloc] initWithFrame:self.right];
-//    UIImage *rightViewItem = [UIImage imageNamed:@"phit.png"];
-//    if (self.lvc.player.rightArm.type == 1) {
-//        rightViewItem = [UIImage imageNamed:@"ehit.png"];
-//    } else if (self.lvc.player.rightArm.type == 2) {
-//        rightViewItem = [UIImage imageNamed:@"mhit.png"];
-//    }
-//    rightView.backgroundColor = [UIColor colorWithPatternImage:rightViewItem];
-//    [self addSubview:rightView];
-    
+    //render images in arm slots
     [self.lvc.player.leftArm setupLayer];
     self.lvc.player.leftArm.layer.frame = self.left;
     [self.layer addSublayer:self.lvc.player.leftArm.layer];
@@ -252,18 +178,27 @@
     
     //render the draggable items that are in your inventory
     if (self.lvc.player.inv1) {
-        self.inv1Item = [[ItemView alloc] initWithFrame:CGRectMake(60, 40, 50, 50) andItem:self.lvc.player.inv1 andSV:self];
+        self.inv1Item = [[ItemView alloc] initWithFrame:CGRectMake(55, 38, 50, 50) andItem:self.lvc.player.inv1 andSV:self];
         [self addSubview:self.inv1Item];
     }if (self.lvc.player.inv2) {
-         self.inv2Item = [[ItemView alloc] initWithFrame:CGRectMake(120, 40, 50, 50) andItem:self.lvc.player.inv2 andSV:self];
+         self.inv2Item = [[ItemView alloc] initWithFrame:CGRectMake(120, 38, 50, 50) andItem:self.lvc.player.inv2 andSV:self];
         [self addSubview:self.inv2Item];
     } if (self.lvc.player.inv3) {
-        self.inv3Item = [[ItemView alloc] initWithFrame:CGRectMake(180, 40, 50, 50) andItem:self.lvc.player.inv3 andSV:self];
+        self.inv3Item = [[ItemView alloc] initWithFrame:CGRectMake(180, 38, 50, 50) andItem:self.lvc.player.inv3 andSV:self];
         [self addSubview:self.inv3Item];
     } if (self.lvc.player.inv4) {
-        self.inv4Item = [[ItemView alloc] initWithFrame:CGRectMake(240, 40, 50, 50) andItem:self.lvc.player.inv4 andSV:self];
+        self.inv4Item = [[ItemView alloc] initWithFrame:CGRectMake(240, 38, 50, 50) andItem:self.lvc.player.inv4 andSV:self];
         [self addSubview:self.inv4Item];
     }
+}
+
+-(void)upgrade{
+    UIViewController *pvc = [UIViewController new];
+    UpgradeView *upgrades = [[UpgradeView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    upgrades.lvc = self.lvc;
+    [upgrades setupView];
+    pvc.view = upgrades;
+    [self.vc presentModalViewController:pvc animated:YES];
 }
 
 /*

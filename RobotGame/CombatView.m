@@ -34,9 +34,8 @@
 @property UILabel *mobHPLabel;
 @property UILabel *mobShieldsLabel;
 
-@property UIButton *eButton;
-@property UIButton *mButton;
-@property UIButton *pButton;
+@property UIButton *leftButton;
+@property UIButton *rightButton;
 
 @property CALayer *currentAnimation;
 @property (strong) AVAudioPlayer* zapPlayer;
@@ -52,26 +51,45 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UIImage *bgImage = [UIImage imageNamed:@"fightpurple.png"];
-        self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-        
-        //        NSURL* documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        //        NSURL* audioURL = [documentDir URLByAppendingPathComponent:@"zap.wav"];
-        
-        NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"zap" ofType:@"wav"];
-        NSURL *audioFileURL = [NSURL fileURLWithPath:audioFilePath];
-        
-        self.zapPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileURL error:nil];
-        self.zapPlayer.delegate = self;
-        [self.zapPlayer prepareToPlay];
-        
-        //        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"zap" ofType:@"wav"];
-        //        NSSound *sound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
-        // Do something with sound, like [sound play] and release.
-        
-        //        NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"zap" ofType:@"wav"];
-        //        NSURL *audioFileURL = [NSURL fileURLWithPath:audioFilePath];
+
     }
+    return self;
+}
+
+-(id)initWithFrame:(CGRect)frame andMob:(Mob*)mob andPlayer:(Player*)player {
+    self = [super initWithFrame:frame];
+    self.mob = mob;
+    self.player = player;
+    
+    UIImage *bgImage = [UIImage imageNamed:@"fightpurple.png"];
+    if (self.mob.image ==2) {
+        bgImage = [UIImage imageNamed:@"fightred.png"];
+    } else if (self.mob.image ==3) {
+        bgImage = [UIImage imageNamed:@"fightblue.png"];
+    }
+    self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    
+    NSString *zaudioFilePath = [[NSBundle mainBundle] pathForResource:@"zap" ofType:@"wav"];
+    NSURL *zaudioFileURL = [NSURL fileURLWithPath:zaudioFilePath];
+    
+    self.zapPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:zaudioFileURL error:nil];
+    self.zapPlayer.delegate = self;
+    [self.zapPlayer prepareToPlay];
+    
+    NSString *baudioFilePath = [[NSBundle mainBundle] pathForResource:@"bang" ofType:@"wav"];
+    NSURL *baudioFileURL = [NSURL fileURLWithPath:baudioFilePath];
+    
+    self.bangPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:baudioFileURL error:nil];
+    self.bangPlayer.delegate = self;
+    [self.bangPlayer prepareToPlay];
+    
+    NSString *laudioFilePath = [[NSBundle mainBundle] pathForResource:@"laser" ofType:@"wav"];
+    NSURL *laudioFileURL = [NSURL fileURLWithPath:laudioFilePath];
+    
+    self.laserPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:laudioFileURL error:nil];
+    self.laserPlayer.delegate = self;
+    [self.laserPlayer prepareToPlay];
+    
     return self;
 }
 
@@ -102,54 +120,56 @@
         self.pWeapon += self.player.rightArm.damage;
     }
     
-    //place a picture of the player
-    //    CALayer *bgLayer = [CALayer new];
-    //    bgLayer.bounds = CGRectMake(0,0,self.window.frame.size.width,self.window.frame.size.height);
-    //    bgLayer.frame = CGRectMake(0,0,self.window.frame.size.width,self.window.frame.size.height);
-    //    UIImage *redCombat = [UIImage imageNamed:@"fightred.png"];
-    //    bgLayer.contents = (__bridge id)([redCombat CGImage]);
-    //    [self.layer addSublayer:bgLayer];
+    //set up the arm buttons
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(180, 210, 87, 150)];
+    self.rightButton.adjustsImageWhenHighlighted = NO;
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(-10, 210, 87, 150)];
+    self.leftButton.adjustsImageWhenHighlighted = NO;
     
-    //if either equipped item is of the right type
-    if (self.player.rightArm.type == 1 || self.player.leftArm.type == 1) {
-        //place the button
-        self.eButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.eButton.frame = CGRectMake(51, 51, 50, 50);
-        [self.eButton setImage:[UIImage imageNamed:@"ehit.png"] forState:UIControlStateNormal];
-        self.eButton.adjustsImageWhenHighlighted = NO;
-        [self.eButton addTarget:self action:@selector(playerEHit) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.eButton];
+    if (self.player.rightArm.type == 1) {
+        [self.rightButton setImage:[UIImage imageNamed:@"eright.png"] forState:UIControlStateNormal];
+        [self.rightButton addTarget:self action:@selector(playerEHit) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    if (self.player.rightArm.type == 2 || self.player.leftArm.type == 2) {
-        self.mButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.mButton.frame = CGRectMake(101, 51, 50, 50);
-        [self.mButton setImage:[UIImage imageNamed:@"mhit.png"] forState:UIControlStateNormal];
-        self.mButton.adjustsImageWhenHighlighted = NO;
-        [self.mButton addTarget:self action:@selector(playerMHit) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.mButton];
+    if (self.player.leftArm.type == 1) {
+        [self.leftButton setImage:[UIImage imageNamed:@"eleft.png"] forState:UIControlStateNormal];
+        [self.leftButton addTarget:self action:@selector(playerEHit) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    if (self.player.rightArm.type == 3 || self.player.leftArm.type == 3) {
-        self.pButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.pButton.frame = CGRectMake(151, 51, 50, 50);
-        [self.pButton setImage:[UIImage imageNamed:@"phit.png"] forState:UIControlStateNormal];
-        self.pButton.adjustsImageWhenHighlighted = NO;
-        [self.pButton addTarget:self action:@selector(playerPHit) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.pButton];
+    if (self.player.rightArm.type == 2) {
+        [self.rightButton setImage:[UIImage imageNamed:@"mright.png"] forState:UIControlStateNormal];
+        [self.rightButton addTarget:self action:@selector(playerMHit) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    if (self.player.leftArm.type == 2) {
+        [self.leftButton setImage:[UIImage imageNamed:@"mleft.png"] forState:UIControlStateNormal];
+        [self.leftButton addTarget:self action:@selector(playerMHit) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    if (self.player.rightArm.type == 3) {
+        [self.rightButton setImage:[UIImage imageNamed:@"pright.png"] forState:UIControlStateNormal];
+        [self.rightButton addTarget:self action:@selector(playerPHit) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    if (self.player.leftArm.type == 3) {
+        [self.leftButton setImage:[UIImage imageNamed:@"pleft.png"] forState:UIControlStateNormal];
+        [self.leftButton addTarget:self action:@selector(playerPHit) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [self addSubview:self.rightButton];
+    [self addSubview:self.leftButton];
     
     //add the labels
-    self.playerHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 300, 200, 30)];
+    self.playerHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 360, 200, 30)];
     self.playerHPLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     [self addSubview:self.playerHPLabel];
-    self.playerShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 330, 200, 30)];
+    self.playerShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 390, 200, 30)];
     self.playerShieldsLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     [self addSubview:self.playerShieldsLabel];
-    self.mobHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 360, 200, 30)];
+    self.mobHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 200, 30)];
     self.mobHPLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     [self addSubview:self.mobHPLabel];
-    self.mobShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 390, 200, 30)];
+    self.mobShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 200, 30)];
     self.mobShieldsLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
     [self addSubview:self.mobShieldsLabel];
     
@@ -161,10 +181,10 @@
 }
 
 -(void)updateLabels {
-    self.playerHPLabel.text = [NSString stringWithFormat:@"player hp = %d", self.player.currentHP];
-    self.playerShieldsLabel.text = [NSString stringWithFormat:@"player shield = %d", self.playerShields];
-    self.mobHPLabel.text = [NSString stringWithFormat:@"mob hp = %d", self.mobHP];
-    self.mobShieldsLabel.text = [NSString stringWithFormat:@"mob shield = %d", self.mobShields];
+    self.playerHPLabel.text = [NSString stringWithFormat:@"Hull: %d", self.player.currentHP];
+    self.playerShieldsLabel.text = [NSString stringWithFormat:@"Shield: %d", self.playerShields];
+    self.mobHPLabel.text = [NSString stringWithFormat:@"Hull: %d", self.mobHP];
+    self.mobShieldsLabel.text = [NSString stringWithFormat:@"Shield: %d", self.mobShields];
 }
 
 //you could also set up the labels using layers
@@ -178,13 +198,30 @@
     [statLabel setForegroundColor:[[UIColor blackColor] CGColor]];
     //statLabel.position = CGPointMake(100,100);
     [self.layer addSublayer:statLabel];
-    //find out how to use UIlabels in CALayers
     [self setNeedsDisplay];
+}
+
+-(void)keyframeAnimate {
+    //lets animate that!
+    CAKeyframeAnimation *slider = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //set yourself as the delegate so you can do stuff when the animation stops
+    slider.delegate = self;
+    CGPoint orig = CGPointMake(50,300);
+    CGPoint point1 = CGPointMake(20, 200);
+    CGPoint point2 = CGPointMake(100, 150);
+    NSArray *spots = @[[NSValue valueWithCGPoint:orig],[NSValue valueWithCGPoint:point1],[NSValue valueWithCGPoint:point2]];
+    [slider setValues:spots];
+    [slider setDuration:1];
+    [slider setKeyTimes:@[@(0.0),@(0.6),@(1.0)]];
+    [self.currentAnimation addAnimation:slider forKey:@"slider"];
+    //set the position to the end point so it doesn't snap back
+    self.currentAnimation.position = CGPointMake(100,150);
 }
 
 -(void)playerEHit {
     //disable the button until animation is complete
-    self.eButton.enabled = FALSE;
+    self.leftButton.enabled = FALSE;
+    self.rightButton.enabled = FALSE;
     
     int isCrit = 0;
     int critNum = arc4random() % (100-self.player.crit);
@@ -208,34 +245,22 @@
     }
     
     self.currentAnimation = [CALayer new];
-    self.currentAnimation.frame = CGRectMake(50,300,50,50);
-    UIImage *electricity = [UIImage imageNamed:@"ehit.png"];
+    self.currentAnimation.frame = CGRectMake(50,300,46,100);
+    UIImage *electricity = [UIImage imageNamed:@"ebullet.png"];
     self.currentAnimation.contents = (__bridge id)([electricity CGImage]);
     [self.layer addSublayer:self.currentAnimation];
     
-    //lets animate that!
-    CAKeyframeAnimation *slider = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    //set yourself as the delegate so you can do stuff when the animation stops
-    slider.delegate = self;
-    CGPoint orig = CGPointMake(50,300);
-    CGPoint point1 = CGPointMake(20, 200);
-    CGPoint point2 = CGPointMake(100, 150);
-    NSArray *spots = @[[NSValue valueWithCGPoint:orig],[NSValue valueWithCGPoint:point1],[NSValue valueWithCGPoint:point2]];
-    [slider setValues:spots];
-    [slider setDuration:1];
-    [slider setKeyTimes:@[@(0.0),@(0.6),@(1.0)]];
-    [self.currentAnimation addAnimation:slider forKey:@"slider"];
-    //set the position to the end point so it doesn't snap back
-    self.currentAnimation.position = CGPointMake(100,150);
-    
+    [self keyframeAnimate];
     //PLAY ZE SOUND
     [self.zapPlayer play];
-    
+    //trigger the mob's hit
     [self mobHit];
 }
 
 -(void)playerMHit {
-    self.mButton.enabled = FALSE;
+    self.leftButton.enabled = FALSE;
+    self.rightButton.enabled = FALSE;
+    
     int isCrit = 0;
     int critNum = arc4random() % (100-self.player.crit);
     if (critNum == 0) {
@@ -257,14 +282,21 @@
         self.playerShields += 1;
     }
     
-    [self updateLabels];
-    [self setNeedsDisplay];
+    self.currentAnimation = [CALayer new];
+    self.currentAnimation.frame = CGRectMake(50,300,46,100);
+    UIImage *laser = [UIImage imageNamed:@"mbullet.png"];
+    self.currentAnimation.contents = (__bridge id)([laser CGImage]);
+    [self.layer addSublayer:self.currentAnimation];
     
+    [self keyframeAnimate];
+    [self.laserPlayer play];
     [self mobHit];
 }
 
 -(void)playerPHit {
-    self.pButton.enabled = FALSE;
+    self.leftButton.enabled = FALSE;
+    self.rightButton.enabled = FALSE;
+    
     //determine if its a crit
     int isCrit = 0;
     int critNum = arc4random() % (100-self.player.crit);
@@ -289,11 +321,14 @@
         }
     }
     
-    //update the labels
-    [self updateLabels];
-    [self setNeedsDisplay];
+    self.currentAnimation = [CALayer new];
+    self.currentAnimation.frame = CGRectMake(50,300,46,100);
+    UIImage *missile = [UIImage imageNamed:@"pbullet.png"];
+    self.currentAnimation.contents = (__bridge id)([missile CGImage]);
+    [self.layer addSublayer:self.currentAnimation];
     
-    //trigger the mob's hit
+    [self keyframeAnimate];
+    [self.bangPlayer play];
     [self mobHit];
 }
 
@@ -317,22 +352,21 @@
     self.mobStunned = FALSE;
     
     if (self.player.currentHP <= 0) {
+        //display on screen
+        UILabel *deadLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 30)];
+        deadLabel.text = @"GORT LOST!";
+        [self addSubview:deadLabel];
         //DISMISS ALL THE THINGS
-        [self.delegate diedInCombat];
-        //push a new view controller that tells you you lost
-        //and has a link back to the world view controller
-        //how to dismiss the lvc?
-        
-        //save some scores you got TO THE DATASTORE!!!
-        //remove the world from the datastore!
+        [self.delegate performSelector:@selector(diedInCombat) withObject:nil afterDelay:1];
+        //saves the score you got to the datasore
+        //removes the world from the datastore
     }
 }
 
 //this method is called every time the animation finishes
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
-    self.eButton.enabled = TRUE;
-    self.mButton.enabled = TRUE;
-    self.pButton.enabled = TRUE;
+    self.leftButton.enabled = TRUE;
+    self.rightButton.enabled = TRUE;
     //it removes the layer
     [self.currentAnimation removeFromSuperlayer];
     [self updateLabels];
@@ -342,22 +376,19 @@
 -(void)isMobDead {
     if (self.mobHP <= 0) {
         //lock the buttons
-        self.eButton.enabled = FALSE;
-        self.mButton.enabled = FALSE;
-        self.pButton.enabled = FALSE;
+        self.leftButton.enabled = FALSE;
+        self.rightButton.enabled = FALSE;
         //indicate on the screen
-        UILabel *winLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 100)];
-        winLabel.text = @"GORT FTW";
-        winLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+        UILabel *winLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 30)];
+        winLabel.text = @"GORT WINS AGAIN!";
         [self addSubview:winLabel];
         //grab their stuff and check level up
         self.player.xp += self.mob.xp;
         self.player.scrap += self.mob.scrap;
         if ([self.player didLevelUp]) {
             //indicate on the screen
-            UILabel *dingLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 100)];
-            dingLabel.text = @"DING GRATZ";
-            dingLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+            UILabel *dingLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 30)];
+            dingLabel.text = @"GORT LEVELED UP!";
             [self addSubview:dingLabel];
         }
         //increment score

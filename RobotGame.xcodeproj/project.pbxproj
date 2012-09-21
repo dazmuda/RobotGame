@@ -44,9 +44,6 @@
 		840115AF1607A2F7005107FE /* tinybot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159E1607A2F7005107FE /* tinybot.png */; };
 		840115B01607A2F7005107FE /* purplebot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401159F1607A2F7005107FE /* purplebot.png */; };
 		840115B11607A2F7005107FE /* redbot.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A01607A2F7005107FE /* redbot.png */; };
-		840115B21607A2F7005107FE /* fightpurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A11607A2F7005107FE /* fightpurple.png */; };
-		840115B31607A2F7005107FE /* fightred.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A21607A2F7005107FE /* fightred.png */; };
-		840115B41607A2F7005107FE /* inventory.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115A31607A2F7005107FE /* inventory.png */; };
 		840115C61607AC74005107FE /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115C51607AC74005107FE /* DataStore.m */; };
 		840115CD1607B476005107FE /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115CC1607B473005107FE /* World.m */; };
 		840115D71607E3A9005107FE /* Mob.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115D61607E38A005107FE /* Mob.m */; };
@@ -56,6 +53,24 @@
 		840115E81607F7F7005107FE /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115E71607F7F6005107FE /* Level.m */; };
 		840115EF16092847005107FE /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115EE16092844005107FE /* WorldViewController.m */; };
 		840115FE160BAECC005107FE /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 840115FD160BAEC8005107FE /* Score.m */; };
+		84011608160BE819005107FE /* ebullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 840115FF160BE814005107FE /* ebullet.png */; };
+		84011609160BE819005107FE /* eleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011600160BE815005107FE /* eleft.png */; };
+		8401160A160BE819005107FE /* eright.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011601160BE815005107FE /* eright.png */; };
+		8401160B160BE819005107FE /* mbullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011602160BE816005107FE /* mbullet.png */; };
+		8401160C160BE819005107FE /* mleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011603160BE816005107FE /* mleft.png */; };
+		8401160D160BE819005107FE /* mright.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011604160BE817005107FE /* mright.png */; };
+		8401160E160BE819005107FE /* pbullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011605160BE817005107FE /* pbullet.png */; };
+		8401160F160BE819005107FE /* pleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011606160BE818005107FE /* pleft.png */; };
+		84011610160BE819005107FE /* pright.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011607160BE818005107FE /* pright.png */; };
+		84011619160C5194005107FE /* bluebot.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011611160C516A005107FE /* bluebot.png */; };
+		8401161A160C5194005107FE /* fightblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011612160C516B005107FE /* fightblue.png */; };
+		8401161B160C5194005107FE /* fightpurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011613160C516D005107FE /* fightpurple.png */; };
+		8401161C160C5194005107FE /* fightred.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011614160C5171005107FE /* fightred.png */; };
+		8401161D160C5194005107FE /* inventory.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011615160C5176005107FE /* inventory.png */; };
+		8401161E160C5194005107FE /* loadscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011616160C517B005107FE /* loadscreen.png */; };
+		8401161F160C5194005107FE /* skills.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011617160C5182005107FE /* skills.png */; };
+		84011620160C5194005107FE /* stats.png in Resources */ = {isa = PBXBuildFile; fileRef = 84011618160C518A005107FE /* stats.png */; };
+		84011623160C5514005107FE /* UpgradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84011622160C5512005107FE /* UpgradeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,9 +124,6 @@
 		8401159E1607A2F7005107FE /* tinybot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinybot.png; sourceTree = "<group>"; };
 		8401159F1607A2F7005107FE /* purplebot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purplebot.png; sourceTree = "<group>"; };
 		840115A01607A2F7005107FE /* redbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbot.png; sourceTree = "<group>"; };
-		840115A11607A2F7005107FE /* fightpurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightpurple.png; sourceTree = "<group>"; };
-		840115A21607A2F7005107FE /* fightred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightred.png; sourceTree = "<group>"; };
-		840115A31607A2F7005107FE /* inventory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inventory.png; sourceTree = "<group>"; };
 		840115C41607AC74005107FE /* DataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
 		840115C51607AC74005107FE /* DataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStore.m; sourceTree = "<group>"; };
 		840115CB1607B471005107FE /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
@@ -130,6 +142,25 @@
 		840115EE16092844005107FE /* WorldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldViewController.m; sourceTree = "<group>"; };
 		840115FC160BAEC4005107FE /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		840115FD160BAEC8005107FE /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		840115FF160BE814005107FE /* ebullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ebullet.png; sourceTree = "<group>"; };
+		84011600160BE815005107FE /* eleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eleft.png; sourceTree = "<group>"; };
+		84011601160BE815005107FE /* eright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eright.png; sourceTree = "<group>"; };
+		84011602160BE816005107FE /* mbullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mbullet.png; sourceTree = "<group>"; };
+		84011603160BE816005107FE /* mleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleft.png; sourceTree = "<group>"; };
+		84011604160BE817005107FE /* mright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mright.png; sourceTree = "<group>"; };
+		84011605160BE817005107FE /* pbullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbullet.png; sourceTree = "<group>"; };
+		84011606160BE818005107FE /* pleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pleft.png; sourceTree = "<group>"; };
+		84011607160BE818005107FE /* pright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pright.png; sourceTree = "<group>"; };
+		84011611160C516A005107FE /* bluebot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluebot.png; sourceTree = "<group>"; };
+		84011612160C516B005107FE /* fightblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightblue.png; sourceTree = "<group>"; };
+		84011613160C516D005107FE /* fightpurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightpurple.png; sourceTree = "<group>"; };
+		84011614160C5171005107FE /* fightred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fightred.png; sourceTree = "<group>"; };
+		84011615160C5176005107FE /* inventory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inventory.png; sourceTree = "<group>"; };
+		84011616160C517B005107FE /* loadscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadscreen.png; sourceTree = "<group>"; };
+		84011617160C5182005107FE /* skills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skills.png; sourceTree = "<group>"; };
+		84011618160C518A005107FE /* stats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stats.png; sourceTree = "<group>"; };
+		84011621160C5510005107FE /* UpgradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeView.h; sourceTree = "<group>"; };
+		84011622160C5512005107FE /* UpgradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +253,8 @@
 				8401156D16079FA6005107FE /* PlayerView.m */,
 				8401156F16079FD7005107FE /* StatsView.h */,
 				8401157016079FD7005107FE /* StatsView.m */,
+				84011621160C5510005107FE /* UpgradeView.h */,
+				84011622160C5512005107FE /* UpgradeView.m */,
 				840115721607A042005107FE /* ItemView.h */,
 				840115731607A042005107FE /* ItemView.m */,
 			);
@@ -262,12 +295,29 @@
 		840115921607A2E1005107FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				840115FF160BE814005107FE /* ebullet.png */,
+				84011600160BE815005107FE /* eleft.png */,
+				84011601160BE815005107FE /* eright.png */,
+				84011602160BE816005107FE /* mbullet.png */,
+				84011603160BE816005107FE /* mleft.png */,
+				84011604160BE817005107FE /* mright.png */,
+				84011605160BE817005107FE /* pbullet.png */,
+				84011606160BE818005107FE /* pleft.png */,
+				84011607160BE818005107FE /* pright.png */,
 				840115931607A2F7005107FE /* enter.png */,
 				840115941607A2F7005107FE /* exit.png */,
 				840115951607A2F7005107FE /* ehit.png */,
 				840115961607A2F7005107FE /* mhit.png */,
 				840115971607A2F7005107FE /* phit.png */,
 				840115981607A2F7005107FE /* redfloor.png */,
+				84011611160C516A005107FE /* bluebot.png */,
+				84011612160C516B005107FE /* fightblue.png */,
+				84011613160C516D005107FE /* fightpurple.png */,
+				84011614160C5171005107FE /* fightred.png */,
+				84011615160C5176005107FE /* inventory.png */,
+				84011616160C517B005107FE /* loadscreen.png */,
+				84011617160C5182005107FE /* skills.png */,
+				84011618160C518A005107FE /* stats.png */,
 				840115991607A2F7005107FE /* floor1.png */,
 				8401159A1607A2F7005107FE /* floor2.png */,
 				8401159B1607A2F7005107FE /* floor3.png */,
@@ -276,9 +326,6 @@
 				8401159E1607A2F7005107FE /* tinybot.png */,
 				8401159F1607A2F7005107FE /* purplebot.png */,
 				840115A01607A2F7005107FE /* redbot.png */,
-				840115A11607A2F7005107FE /* fightpurple.png */,
-				840115A21607A2F7005107FE /* fightred.png */,
-				840115A31607A2F7005107FE /* inventory.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -376,9 +423,23 @@
 				840115AF1607A2F7005107FE /* tinybot.png in Resources */,
 				840115B01607A2F7005107FE /* purplebot.png in Resources */,
 				840115B11607A2F7005107FE /* redbot.png in Resources */,
-				840115B21607A2F7005107FE /* fightpurple.png in Resources */,
-				840115B31607A2F7005107FE /* fightred.png in Resources */,
-				840115B41607A2F7005107FE /* inventory.png in Resources */,
+				84011608160BE819005107FE /* ebullet.png in Resources */,
+				84011609160BE819005107FE /* eleft.png in Resources */,
+				8401160A160BE819005107FE /* eright.png in Resources */,
+				8401160B160BE819005107FE /* mbullet.png in Resources */,
+				8401160C160BE819005107FE /* mleft.png in Resources */,
+				8401160D160BE819005107FE /* mright.png in Resources */,
+				8401160E160BE819005107FE /* pbullet.png in Resources */,
+				8401160F160BE819005107FE /* pleft.png in Resources */,
+				84011610160BE819005107FE /* pright.png in Resources */,
+				84011619160C5194005107FE /* bluebot.png in Resources */,
+				8401161A160C5194005107FE /* fightblue.png in Resources */,
+				8401161B160C5194005107FE /* fightpurple.png in Resources */,
+				8401161C160C5194005107FE /* fightred.png in Resources */,
+				8401161D160C5194005107FE /* inventory.png in Resources */,
+				8401161E160C5194005107FE /* loadscreen.png in Resources */,
+				8401161F160C5194005107FE /* skills.png in Resources */,
+				84011620160C5194005107FE /* stats.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +471,7 @@
 				840115E81607F7F7005107FE /* Level.m in Sources */,
 				840115EF16092847005107FE /* WorldViewController.m in Sources */,
 				840115FE160BAECC005107FE /* Score.m in Sources */,
+				84011623160C5514005107FE /* UpgradeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

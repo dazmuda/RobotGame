@@ -52,7 +52,7 @@
     self.levelView.lvc = self;
     [self.levelView renderGrid];
     
-    ControlView *controlView = [[ControlView alloc] initWithFrame:CGRectMake(100, 300, 220, 180)];
+    ControlView *controlView = [[ControlView alloc] initWithFrame:CGRectMake(120, 380, 200, 100)];
     controlView.lvc = self;
     [controlView makeArrowButtons];
     

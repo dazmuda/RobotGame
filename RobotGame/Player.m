@@ -99,4 +99,49 @@
     }
 }
 
+-(void)increaseEPoints {
+    if (self.points >0) {
+        self.ePoints += 1;
+        self.points -= 1;
+        self.eHit += 1;
+        self.crit += 1;
+        if (self.ePoints == 3) {
+            self.eBuff = TRUE;
+        }
+        if (self.ePoints == 6) {
+            self.eMove = TRUE;
+        }
+    }
+}
+
+-(void)increaseMPoints {
+    if (self.points >0) {
+        self.mPoints += 1;
+        self.points -= 1;
+        self.mHit += 1;
+        self.maxShield += 1;
+        if (self.mPoints == 3) {
+            self.mBuff = TRUE;
+        }
+        if (self.mPoints == 6) {
+            self.mMove = TRUE;
+        }
+    }
+}
+
+-(void)increasePPoints {
+    if (self.points >0) {
+        self.pPoints += 1;
+        self.points -= 1;
+        self.pHit += 1;
+        self.maxHP += 2;
+        if (self.mPoints == 3) {
+            self.mBuff = TRUE;
+        }
+        if (self.mPoints == 6) {
+            self.mMove = TRUE;
+        }
+    }
+}
+
 @end

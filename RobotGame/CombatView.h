@@ -26,5 +26,6 @@
 @property (weak, nonatomic) NSObject <CombatViewDelegate> *delegate;
 
 -(void)setupWithBlock:(void(^)(void))block;
+-(id)initWithFrame:(CGRect)frame andMob:(Mob*)mob andPlayer:(Player*)player;
 
 @end

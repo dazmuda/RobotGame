@@ -23,7 +23,4 @@
 +(Square*)wallWithX:(int)x andY:(int)y;
 +(Square*)floorWithX:(int)x andY:(int)y;
 
-+(Square*)wallSquare;
-+(Square*)floorSquare;
-
 @end

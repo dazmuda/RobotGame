@@ -34,6 +34,8 @@
         // Custom initialization
         self.allWorlds = [DataStore allWorlds];
         self.allScores = [DataStore allScores];
+        UIImage *bgImage = [UIImage imageNamed:@"loadscreen.png"];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     }
     return self;
 }
@@ -42,17 +44,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.worldTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 240) style:UITableViewStylePlain];
+    self.worldTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 140, 260, 130) style:UITableViewStylePlain];
     self.worldTable.dataSource = self;
     self.worldTable.delegate = self;
     [self.view addSubview: self.worldTable];
     
-    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 240, 30, 30)];
+    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 30, 30)];
     [newButton setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
     [newButton addTarget:self action:@selector(presentKeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:newButton];
     
-    self.scoreTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 270, 320, 210) style:UITableViewStylePlain];
+    self.scoreTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, 260, 130) style:UITableViewStylePlain];
     self.scoreTable.dataSource = self;
     self.scoreTable.delegate = self;
     [self.view addSubview: self.scoreTable];
@@ -125,7 +127,7 @@
 
 -(void)presentKeyboard {
     //bring the textfield up
-    self.nameField.frame = CGRectMake(0,0,200,100);
+    self.nameField.frame = CGRectMake(205,85,200,100);
     //show the keyboard
     [self.nameField becomeFirstResponder];
     //then the next method is called

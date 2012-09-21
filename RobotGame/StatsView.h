@@ -13,6 +13,7 @@
 @interface StatsView : UIView
 
 @property LevelViewController *lvc;
+@property UIViewController *vc;
 
 @property CGRect left;
 @property CGRect right;

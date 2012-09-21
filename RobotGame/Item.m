@@ -29,14 +29,6 @@
     self.layer.contents = (__bridge id)([item CGImage]);
 }
 
--(id)initWithType:(int)type andDamage:(int)damage {
-    self = [super init];
-    self.type = type;
-    self.damage = damage;
-    self.scrap = damage*5;
-    return self;
-}
-
 +(Item*)newWithType:(int)type andDamage:(int)damage {
     Item *item = [DataStore newItem];
     item.type = type;

@@ -44,9 +44,17 @@
     Square *square31 = [Square floorWithX:3 andY:1];
     square31.mob = mob3;
     
+    Mob *mob4 = [Mob newWithHP:15 andShield:7 andDamage:5 andImage:1];
+    Square *square35 = [Square floorWithX:3 andY:5];
+    square35.mob = mob4;
+    
     Item *item2 = [Item newWithType:1 andDamage:3];
     Square *square43 = [Square floorWithX:4 andY:3];
     square43.item = item2;
+    
+    Mob *mob5 = [Mob newWithHP:12 andShield:10 andDamage:7 andImage:3];
+    Square *square51 = [Square floorWithX:5 andY:1];
+    square51.mob = mob5;
     
     [squareSet addObject:[Square wallWithX:0 andY:0]];
     [squareSet addObject:[Square wallWithX:0 andY:1]];
@@ -54,42 +62,55 @@
     [squareSet addObject:[Square wallWithX:0 andY:3]];
     [squareSet addObject:[Square wallWithX:0 andY:4]];
     [squareSet addObject:[Square wallWithX:0 andY:5]];
+    [squareSet addObject:[Square wallWithX:0 andY:6]];
     
     [squareSet addObject:[Square wallWithX:1 andY:0]];
     [squareSet addObject:[Square floorWithX:1 andY:1]];
     [squareSet addObject:square12];
     [squareSet addObject:square13];
     [squareSet addObject:square14];
-    [squareSet addObject:[Square wallWithX:1 andY:5]];
+    [squareSet addObject:[Square floorWithX:1 andY:5]];
+    [squareSet addObject:[Square wallWithX:1 andY:6]];
     
     [squareSet addObject:[Square wallWithX:2 andY:0]];
     [squareSet addObject:[Square floorWithX:2 andY:1]];
     [squareSet addObject:[Square floorWithX:2 andY:2]];
     [squareSet addObject:[Square floorWithX:2 andY:3]];
     [squareSet addObject:[Square wallWithX:2 andY:4]];
-    [squareSet addObject:[Square wallWithX:2 andY:5]];
+    [squareSet addObject:[Square floorWithX:2 andY:5]];
+    [squareSet addObject:[Square wallWithX:2 andY:6]];
 
     [squareSet addObject:[Square wallWithX:3 andY:0]];
     [squareSet addObject:square31];
     [squareSet addObject:[Square floorWithX:3 andY:2]];
     [squareSet addObject:[Square floorWithX:3 andY:3]];
     [squareSet addObject:[Square wallWithX:3 andY:4]];
-    [squareSet addObject:[Square wallWithX:3 andY:5]];
+    [squareSet addObject:square35];
+    [squareSet addObject:[Square wallWithX:3 andY:6]];
     
     [squareSet addObject:[Square wallWithX:4 andY:0]];
     [squareSet addObject:[Square floorWithX:4 andY:1]];
     [squareSet addObject:[Square floorWithX:4 andY:2]];
     [squareSet addObject:square43];
     [squareSet addObject:[Square floorWithX:4 andY:4]];
-    [squareSet addObject:[Square wallWithX:4 andY:5]];
+    [squareSet addObject:[Square floorWithX:4 andY:5]];
+    [squareSet addObject:[Square wallWithX:4 andY:6]];
     
     [squareSet addObject:[Square wallWithX:5 andY:0]];
-    [squareSet addObject:[Square wallWithX:5 andY:1]];
-    [squareSet addObject:[Square wallWithX:5 andY:2]];
-    [squareSet addObject:[Square wallWithX:5 andY:3]];
-    [squareSet addObject:[Square wallWithX:5 andY:4]];
-    [squareSet addObject:[Square wallWithX:5 andY:5]];
-
+    [squareSet addObject:square51];
+    [squareSet addObject:[Square floorWithX:5 andY:2]];
+    [squareSet addObject:[Square floorWithX:5 andY:3]];
+    [squareSet addObject:[Square floorWithX:5 andY:4]];
+    [squareSet addObject:[Square floorWithX:5 andY:5]];
+    [squareSet addObject:[Square wallWithX:5 andY:6]];
+    
+    [squareSet addObject:[Square wallWithX:6 andY:0]];
+    [squareSet addObject:[Square wallWithX:6 andY:1]];
+    [squareSet addObject:[Square wallWithX:6 andY:2]];
+    [squareSet addObject:[Square wallWithX:6 andY:3]];
+    [squareSet addObject:[Square wallWithX:6 andY:4]];
+    [squareSet addObject:[Square wallWithX:6 andY:5]];
+    [squareSet addObject:[Square wallWithX:6 andY:6]];
     
     self.squares = [NSSet setWithSet:squareSet];
 }
@@ -99,7 +120,7 @@
     self.grid = [NSMutableDictionary new];
     for (Square *square in self.squares) {
         Position *position = [Position withX:square.x andY:square.y];
-        [self.grid setValue:square forKey:position];
+        [self.grid setObject:square forKey:position];
     }
 }
 

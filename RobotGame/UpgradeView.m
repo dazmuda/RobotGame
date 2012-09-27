@@ -125,13 +125,13 @@
 
 -(void)increaseMPoints {
     [self.laserPlayer play];
-    [self.lvc.player increaseEPoints];
+    [self.lvc.player increaseMPoints];
     [self updateLabels];
 }
 
 -(void)increasePPoints {
     [self.bangPlayer play];
-    [self.lvc.player increaseEPoints];
+    [self.lvc.player increasePPoints];
     [self updateLabels];
 }
 

@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "Position.h"
 #import "Square.h"
+#import <Parse/Parse.h>
 
 NSManagedObjectContext* storeContext;
 NSManagedObjectModel* storeModel;
@@ -24,6 +25,12 @@ NSManagedObjectModel* storeModel;
 @end
 
 @implementation DataStore
+
++(NSArray*)parseScores {
+    PFQuery* query = [PFQuery queryWithClassName:@"Score"];
+    NSArray* scores = [query findObjects];
+    return scores;
+}
 
 +(NSManagedObjectModel*)model {
     if (!storeModel) {

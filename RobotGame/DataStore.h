@@ -13,6 +13,7 @@
 
 +(NSArray*)allWorlds;
 +(NSArray*)allScores;
++(NSArray*)parseScores;
 +(World*)newWorld;
 +(Level*)newLevel;
 +(Item*)newItem;

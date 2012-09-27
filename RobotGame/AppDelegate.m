@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LevelViewController.h"
 #import "WorldViewController.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -20,6 +21,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"N3HnFj3Nmkh1qwdx4tuLcp45nOBWASmdiHjMdQh2"
+                  clientKey:@"Na7rkzB8hEUsxdlxRMdnK0lUJTVhcz9MrudEJAtj"];
     
     //self.window.rootViewController = [LevelViewController new];
     self.window.rootViewController = [WorldViewController new];

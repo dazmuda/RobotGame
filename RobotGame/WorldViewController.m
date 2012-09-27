@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "DataStore.h"
 #import "Score.h"
+#import <Parse/Parse.h>
 
 @interface WorldViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -32,8 +33,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
+        //this old allscores contained all scores on the device
+        //self.allScores = [DataStore allScores];
+        
         self.allWorlds = [DataStore allWorlds];
-        self.allScores = [DataStore allScores];
+        self.allScores = [DataStore parseScores];
         UIImage *bgImage = [UIImage imageNamed:@"loadscreen.png"];
         self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     }
@@ -105,8 +110,15 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"score"];
         }
         cell.imageView.image = nil;
-        Score *currentScore = [self.allScores objectAtIndex: indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ - Level %d, VPs %d", currentScore.name, currentScore.level, currentScore.wins];
+        
+        //this displays all the scores on your device
+//        Score *currentScore = [self.allScores objectAtIndex: indexPath.row];
+//        cell.textLabel.text = [NSString stringWithFormat:@"%@ - Level %d, VPs %d", currentScore.name, currentScore.level, currentScore.wins];
+        
+        //this displays all the scores that have been uploaded to parse
+        PFObject* score = [self.allScores objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - Level %@, VPs %@", [score objectForKey:@"name"], [score objectForKey:@"level"], [score objectForKey:@"wins"]];
+
         return cell;
     }
 }
@@ -126,6 +138,7 @@
 }
 
 -(void)presentKeyboard {
+    self.nameField.text = @"";
     //bring the textfield up
     self.nameField.frame = CGRectMake(205,85,200,100);
     //show the keyboard
@@ -167,18 +180,26 @@
     [DataStore save];
     self.allWorlds = [DataStore allWorlds];
     [self.worldTable reloadData];
-    self.allScores = [DataStore allScores];
+    self.allScores = [DataStore parseScores];
     [self.scoreTable reloadData];
 }
 
 -(void)diedInWorld:(World *)world {
+    //save their score in parse
+    PFObject *score = [PFObject objectWithClassName:@"Score"];
+    [score setObject:[NSNumber numberWithInt:world.score.level] forKey:@"level"];
+    [score setObject:world.score.date forKey:@"date"];
+    [score setObject:world.score.name forKey:@"name"];
+    [score setObject:[NSNumber numberWithInt:world.score.wins] forKey:@"wins"];
+    [score save];
+    
     //destroy savegame
     [DataStore destroy:world];
     [DataStore save];
     [self dismissViewControllerAnimated:YES completion:nil];
     self.allWorlds = [DataStore allWorlds];
     [self.worldTable reloadData];
-    self.allScores = [DataStore allScores];
+    self.allScores = [DataStore parseScores];
     [self.scoreTable reloadData];
 }
 
@@ -187,7 +208,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     self.allWorlds = [DataStore allWorlds];
     [self.worldTable reloadData];
-    self.allScores = [DataStore allScores];
+    self.allScores = [DataStore parseScores];
     [self.scoreTable reloadData];
 }
 

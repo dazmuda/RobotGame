@@ -1,28 +1,19 @@
 //
-//  Square.m
+//  Square+Methods.m
 //  RobotGame
 //
-//  Created by Diana Zmuda on 9/17/12.
-//  Copyright (c) 2012 Diana Zmuda. All rights reserved.
+//  Created by Diana Zmuda on 2/2/13.
+//  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import "Square.h"
-#import "Item.h"
-#import "Mob.h"
-#import "Position.h"
+#import "Square+Methods.h"
 #import "DataStore.h"
 
+@implementation Square (Methods)
 
-@implementation Square
-
-@dynamic isWall;
-@dynamic item;
-@dynamic mob;
 @dynamic position;
-@dynamic x;
-@dynamic y;
 
-+(Square*)wallWithX:(int)x andY:(int)y {
++ (Square *)wallWithX:(NSInteger)x andY:(NSInteger)y {
     //replace [Square new] with the datastore new method
     Square *wall = [DataStore newSquare];
     wall.isWall = TRUE;
@@ -31,7 +22,7 @@
     return wall;
 }
 
-+(Square*)floorWithX:(int)x andY:(int)y {
++ (Square *)floorWithX:(NSInteger)x andY:(NSInteger)y {
     Square *floor = [DataStore newSquare];
     floor.isWall = FALSE;
     floor.x = x;

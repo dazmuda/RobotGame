@@ -8,9 +8,8 @@
 
 #import "ItemView.h"
 #import "StatsView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "Player.h"
-#import "Item.h"
+#import "Item+Methods.h"
 #import "LevelViewController.h"
 
 @implementation ItemView

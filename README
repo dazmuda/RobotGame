@@ -1,7 +1,9 @@
 Welcome to Robodrome!
 ---------------------
 
+
 This little dungeon-crawler was created during the last two weeks of App Academy as a personal project. I had a lot of fun creating it, and I hope you enjoy playing/looking at it!
+
 
 What I Used
 -----------
@@ -9,6 +11,7 @@ What I Used
 * AVFoundation for sound effects
 * QuartzCore for animations
 * Parse for a global scoreboard
+
 
 How to Create Your Own Level
 ----------------------------

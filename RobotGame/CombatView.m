@@ -7,14 +7,12 @@
 //
 
 #import "CombatView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "Player.h"
+#import "Player+Methods.h"
 #import "Mob.h"
 #import "LevelViewController.h"
 #import "Item.h"
 #import "WorldViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import <CoreAudio/CoreAudioTypes.h>
 #import "DataStore.h"
 #import "World.h"
 #import "Score.h"
@@ -62,9 +60,9 @@
     self.player = player;
     
     UIImage *bgImage = [UIImage imageNamed:@"fightpurple.png"];
-    if (self.mob.image ==2) {
+    if (self.mob.image == 2) {
         bgImage = [UIImage imageNamed:@"fightred.png"];
-    } else if (self.mob.image ==3) {
+    } else if (self.mob.image == 3) {
         bgImage = [UIImage imageNamed:@"fightblue.png"];
     }
     self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
@@ -311,7 +309,7 @@
         //else hit their shields
         self.mobShields = self.mobShields - self.player.pHit - isCrit*self.player.pHit - self.pWeapon;
         //special buff case
-        if (self.player.pBuff == TRUE) {
+        if (self.player.pBuff == !TRUE) {
             self.mobHP = self.mobHP - .25*(self.player.pHit + self.pWeapon);
         }
         //if this shield hit destroyed shields, the excess hits them
@@ -337,10 +335,10 @@
     if (self.mobStunned == FALSE) {
         if (self.playerShields <= 0) {
             //if your shields are out, direct hit
-            self.player.currentHP = self.player.currentHP - self.mob.damage;
+            self.player.currentHP -= self.mob.damage;
         } else {
             //else it hits your shields
-            self.playerShields = self.playerShields - self.mob.damage;
+            self.playerShields -= self.mob.damage;
             //if this shield hit destroyed shields, the excess hits directly
             if (self.playerShields <= 0) {
                 float excess = 0 - self.playerShields;

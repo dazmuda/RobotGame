@@ -10,9 +10,9 @@
 
 @interface Position : NSObject <NSCopying>
 
-@property int x;
-@property int y;
+@property (assign, nonatomic) NSInteger x;
+@property (assign, nonatomic) NSInteger y;
 
-+(Position*)withX:(double)x andY:(double)y;
++ (Position *)withX:(NSInteger)x andY:(NSInteger)y;
 
 @end

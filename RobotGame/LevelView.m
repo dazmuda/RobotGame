@@ -7,15 +7,14 @@
 //
 
 #import "LevelView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "Player.h"
-#import "Mob.h"
+#import "Mob+Methods.h"
 #import "LevelViewController.h"
-#import "Level.h"
-#import "Item.h"
+#import "Level+Methods.h"
+#import "Item+Methods.h"
 #import "CombatView.h"
 #import "Position.h"
-#import "Square.h"
+#import "Square+Methods.h"
 
 @implementation LevelView
 

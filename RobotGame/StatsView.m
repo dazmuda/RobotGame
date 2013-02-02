@@ -10,8 +10,7 @@
 #import "Player.h"
 #import "LevelViewController.h"
 #import "ItemView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "Item.h"
+#import "Item+Methods.h"
 #import "DataStore.h"
 #import "UpgradeView.h"
 

@@ -10,11 +10,10 @@
 #import "World.h"
 #import "DataStore.h"
 #import "LevelViewController.h"
-#import "Level.h"
-#import "Player.h"
+#import "Level+Methods.h"
+#import "Player+Methods.h"
 #import "DataStore.h"
 #import "Score.h"
-#import <Parse/Parse.h>
 
 @interface WorldViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 

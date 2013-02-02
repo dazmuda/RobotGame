@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/StatsView.m"
-         timestampString = "369909743.859123"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "-dismiss"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/CombatView.m"
-         timestampString = "369932978.598338"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "359"
-         endingLineNumber = "359"
+         startingLineNumber = "357"
+         endingLineNumber = "357"
          landmarkName = "-mobHit"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/WorldViewController.m"
-         timestampString = "370423213.777733"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
+         startingLineNumber = "198"
+         endingLineNumber = "198"
          landmarkName = "-diedInWorld:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/LevelViewController.m"
-         timestampString = "369874021.162097"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
          landmarkName = "-diedInCombat"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/CombatView.m"
-         timestampString = "369932978.598338"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "382"
-         endingLineNumber = "382"
+         startingLineNumber = "380"
+         endingLineNumber = "380"
          landmarkName = "-isMobDead"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/LevelViewController.m"
-         timestampString = "369874021.162097"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-wonInCombat"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/LevelViewController.m"
-         timestampString = "369872032.516701"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
          landmarkName = "-initWithWorld:andWVC:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/WorldViewController.m"
-         timestampString = "370423213.777733"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
+         startingLineNumber = "206"
+         endingLineNumber = "206"
          landmarkName = "-exitedGame"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,18 +112,18 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RobotGame/WorldViewController.m"
-         timestampString = "370423213.777733"
+         timestampString = "381530093.719931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
          landmarkName = "-presentKeyboard"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
       <ExceptionBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          scope = "0"

@@ -10,7 +10,7 @@
 
 @implementation Position
 
-+(Position*)withX:(double)x andY:(double)y {
++ (Position *)withX:(NSInteger)x andY:(NSInteger)y {
     Position *newPos = [Position new];
     newPos.x = x;
     newPos.y = y;

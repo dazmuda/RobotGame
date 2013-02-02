@@ -1,28 +1,21 @@
 //
-//  Level.m
+//  Level+Methods.m
 //  RobotGame
 //
-//  Created by Diana Zmuda on 9/17/12.
-//  Copyright (c) 2012 Diana Zmuda. All rights reserved.
+//  Created by Diana Zmuda on 2/2/13.
+//  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import "Level.h"
-#import "Mob.h"
-#import "Item.h"
-#import "LevelViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "Level+Methods.h"
+#import "Mob+Methods.h"
+#import "Square+Methods.h"
 #import "Position.h"
-#import "Square.h"
-#import "LevelView.h"
 #import "CombatView.h"
-#import "Player.h"
-#import "World.h"
+#import "Item+Methods.h"
+#import "LevelViewController.h"
+#import "Player+Methods.h"
 
-
-@implementation Level
-
-@dynamic squares;
-@dynamic world;
+@implementation Level (Methods)
 
 //create a square set for coredata
 -(void)createSquares {
@@ -79,7 +72,7 @@
     [squareSet addObject:[Square wallWithX:2 andY:4]];
     [squareSet addObject:[Square floorWithX:2 andY:5]];
     [squareSet addObject:[Square wallWithX:2 andY:6]];
-
+    
     [squareSet addObject:[Square wallWithX:3 andY:0]];
     [squareSet addObject:square31];
     [squareSet addObject:[Square floorWithX:3 andY:2]];

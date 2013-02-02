@@ -9,7 +9,7 @@
 #import "UpgradeView.h"
 #import "DataStore.h"
 #import "LevelViewController.h"
-#import "Player.h"
+#import "Player+Methods.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface UpgradeView () <AVAudioPlayerDelegate>

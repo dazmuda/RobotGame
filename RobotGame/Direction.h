@@ -11,11 +11,11 @@
 
 @interface Direction : UIButton
 
-@property int changeX;
-@property int changeY;
+@property NSInteger changeX;
+@property NSInteger changeY;
 @property ControlView *cv;
 
--(void)movePlayer;
--(id)initWithFrame:(CGRect)frame andCV:(ControlView*)cv andChangeY:(int)y andChangeX:(int)x ;
+- (void)movePlayer;
+- (id)initWithFrame:(CGRect)frame andCV:(ControlView *)cv andChangeY:(NSInteger)y andChangeX:(NSInteger)x ;
 
 @end

@@ -7,10 +7,9 @@
 //
 
 #import "LevelViewController.h"
-#import "Level.h"
+#import "Level+Methods.h"
 #import "LevelView.h"
 #import "Player.h"
-#import <QuartzCore/QuartzCore.h>
 #import "ControlView.h"
 #import "PlayerView.h"
 #import "DataStore.h"

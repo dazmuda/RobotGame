@@ -9,16 +9,15 @@
 #import "Direction.h"
 #import "ControlView.h"
 #import "LevelViewController.h"
-#import "Player.h"
+#import "Player+Methods.h"
 #import "Position.h"
-#import "Level.h"
+#import "Level+Methods.h"
 #import "LevelView.h"
 #import "PlayerView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation Direction
 
-- (id) initWithFrame:(CGRect)frame andCV:(ControlView*)cv andChangeY:(int)y andChangeX:(int)x {
+- (id)initWithFrame:(CGRect)frame andCV:(ControlView*)cv andChangeY:(int)y andChangeX:(int)x {
     self = [super initWithFrame:frame];
     self.adjustsImageWhenHighlighted = NO;
     self.cv = cv;
@@ -29,7 +28,7 @@
     return self;
 }
 
-- (void) movePlayer {
+- (void)movePlayer {
     
     //CGPoint newOrigin = self.cv.lvc.player.layer.frame.origin;
     CGPoint newOrigin = self.cv.lvc.player.pv.frame.origin;

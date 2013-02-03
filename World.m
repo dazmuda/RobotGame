@@ -11,7 +11,6 @@
 #import "Player.h"
 #import "Score.h"
 
-
 @implementation World
 
 @dynamic date;

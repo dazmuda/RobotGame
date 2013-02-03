@@ -9,7 +9,6 @@
 #import "Item.h"
 #import "Square.h"
 
-
 @implementation Item
 
 @dynamic damage;

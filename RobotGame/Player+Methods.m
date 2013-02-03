@@ -15,7 +15,8 @@
 
 @implementation Player (Methods)
 
-- (void)beginStats {
+- (void)beginStats
+{
     self.currentHP = 20;
     self.maxHP = 20;
     self.maxShield = 10;
@@ -38,8 +39,8 @@
     self.mMove = FALSE;
     self.pMove = FALSE;
     
-    self.x = 1;
-    self.y = 1;
+    self.x = 2;
+    self.y = 3;
     //right now x and y aren't being changed or saved
     
     self.rightArm = [Item newWithType:2 andDamage:1];
@@ -47,11 +48,13 @@
     [self loadPosition];
 }
 
-- (void)loadPosition {
+- (void)loadPosition
+{
     self.position = [Position withX:self.x andY:self.y];
 }
 
-- (BOOL)didLevelUp {
+- (BOOL)didLevelUp
+{
     int requiredXP = self.level*50;
     if (self.xp >=requiredXP) {
         self.xp -=requiredXP;
@@ -69,7 +72,8 @@
     }
 }
 
-- (void)increaseEPoints {
+- (void)increaseEPoints
+{
     if (self.points >0) {
         self.ePoints += 1;
         self.points -= 1;
@@ -84,7 +88,8 @@
     }
 }
 
-- (void)increaseMPoints {
+- (void)increaseMPoints
+{
     if (self.points >0) {
         self.mPoints += 1;
         self.points -= 1;
@@ -99,7 +104,8 @@
     }
 }
 
-- (void)increasePPoints {
+- (void)increasePPoints
+{
     if (self.points >0) {
         self.pPoints += 1;
         self.points -= 1;

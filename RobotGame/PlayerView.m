@@ -7,7 +7,6 @@
 //
 
 #import "PlayerView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "StatsView.h"
 #import "LevelViewController.h"
 
@@ -29,7 +28,8 @@
     return self;
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UIViewController *pvc = [UIViewController new];
     StatsView *statsView = [[StatsView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     statsView.lvc = self.lvc;

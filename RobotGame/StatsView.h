@@ -6,22 +6,21 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 @class LevelViewController;
 @class ItemView;
 
 @interface StatsView : UIView
 
-@property LevelViewController *lvc;
-@property UIViewController *vc;
+@property (strong, nonatomic) LevelViewController *lvc;
+@property (strong, nonatomic) UIViewController *vc;
 
-@property CGRect left;
-@property CGRect right;
+@property (assign, nonatomic) CGRect left;
+@property (assign, nonatomic) CGRect right;
 
-@property ItemView *inv1Item;
-@property ItemView *inv2Item;
-@property ItemView *inv3Item;
-@property ItemView *inv4Item;
+@property (strong, nonatomic) ItemView *inv1Item;
+@property (strong, nonatomic) ItemView *inv2Item;
+@property (strong, nonatomic) ItemView *inv3Item;
+@property (strong, nonatomic) ItemView *inv4Item;
 
 -(void)setupView;
 

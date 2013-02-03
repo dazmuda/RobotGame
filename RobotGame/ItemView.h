@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@class StatsView;
-@class Item;
+@class StatsView, Item;
 
 @interface ItemView : UIView
 
-@property StatsView* sv;
-@property Item* item;
+@property StatsView *sv;
+@property Item *item;
 
-- (id)initWithFrame:(CGRect)frame andItem:(Item*)item andSV:(StatsView*)sv;
+- (id)initWithFrame:(CGRect)frame andItem:(Item *)item andSV:(StatsView *)sv;
 
 @end

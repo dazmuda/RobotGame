@@ -17,7 +17,8 @@
 
 @implementation Direction
 
-- (id)initWithFrame:(CGRect)frame andCV:(ControlView*)cv andChangeY:(int)y andChangeX:(int)x {
+- (id)initWithFrame:(CGRect)frame andCV:(ControlView *)cv andChangeY:(int)y andChangeX:(int)x
+{
     self = [super initWithFrame:frame];
     self.adjustsImageWhenHighlighted = NO;
     self.cv = cv;
@@ -28,8 +29,8 @@
     return self;
 }
 
-- (void)movePlayer {
-    
+- (void)movePlayer
+{
     //CGPoint newOrigin = self.cv.lvc.player.layer.frame.origin;
     CGPoint newOrigin = self.cv.lvc.player.pv.frame.origin;
     
@@ -38,6 +39,7 @@
     self.cv.lvc.player.position.x += self.changeX;
     //pick up object or challenge mob
     [self.cv.lvc.level checkPlayerPos:self.cv.lvc.player.position];
+    
     //if it isn't a wall then move the screen
     if ([self.cv.lvc.level isItWall:self.cv.lvc.player.position] == FALSE) {
         newOrigin.y += 72*self.changeY;
@@ -48,7 +50,8 @@
         newBounds.origin.x += 72*self.changeX;
         [UIView animateWithDuration:.2 animations:^{
             self.cv.lvc.levelView.bounds = newBounds;}];
-        //if it is a wall then undo that position change
+        
+    //if it is a wall then undo that position change
     } else if ([self.cv.lvc.level isItWall:self.cv.lvc.player.position] == TRUE) {
         self.cv.lvc.player.position.y -= self.changeY;
         self.cv.lvc.player.position.x -= self.changeX;
@@ -61,8 +64,10 @@
     self.cv.lvc.player.pv.frame = newFrame;
     [self.cv.lvc.levelView setNeedsDisplay];
     
+    //save the player's changed position
+    self.cv.lvc.player.x = self.cv.lvc.player.position.x;
+    self.cv.lvc.player.y = self.cv.lvc.player.position.y;
     NSLog(@"PLAYER LOC IS (%d, %d)", self.cv.lvc.player.position.x, self.cv.lvc.player.position.y);
 }
-
 
 @end

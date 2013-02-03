@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
 @class World;
 
 @interface Score : NSManagedObject

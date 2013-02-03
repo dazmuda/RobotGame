@@ -6,10 +6,7 @@
 //  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
-@class Item, Mob;
+@class Item, Mob, Position;
 
 @interface Square : NSManagedObject
 
@@ -18,5 +15,8 @@
 @property (nonatomic, assign) NSInteger y;
 @property (nonatomic, retain) Item *item;
 @property (nonatomic, retain) Mob *mob;
+
+//not in coredata
+@property (nonatomic, retain) Position *position;
 
 @end

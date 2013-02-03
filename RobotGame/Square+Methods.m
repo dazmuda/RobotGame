@@ -11,9 +11,8 @@
 
 @implementation Square (Methods)
 
-@dynamic position;
-
-+ (Square *)wallWithX:(NSInteger)x andY:(NSInteger)y {
++ (Square *)wallWithX:(NSInteger)x andY:(NSInteger)y
+{
     //replace [Square new] with the datastore new method
     Square *wall = [DataStore newSquare];
     wall.isWall = TRUE;
@@ -22,7 +21,8 @@
     return wall;
 }
 
-+ (Square *)floorWithX:(NSInteger)x andY:(NSInteger)y {
++ (Square *)floorWithX:(NSInteger)x andY:(NSInteger)y
+{
     Square *floor = [DataStore newSquare];
     floor.isWall = FALSE;
     floor.x = x;

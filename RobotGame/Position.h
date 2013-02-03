@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface Position : NSObject <NSCopying>
 
 @property (assign, nonatomic) NSInteger x;

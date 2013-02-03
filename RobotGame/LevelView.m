@@ -22,14 +22,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+        self.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
 
--(void)renderGrid {
-    
+- (void)renderGrid
+{
     //for every key in the grid dictionary
     for(Position *pos in self.lvc.level.grid) {
         //this is the value for that key

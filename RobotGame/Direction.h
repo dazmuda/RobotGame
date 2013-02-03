@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 @class ControlView;
 
 @interface Direction : UIButton
 
-@property NSInteger changeX;
-@property NSInteger changeY;
-@property ControlView *cv;
+@property (assign, nonatomic) NSInteger changeX;
+@property (assign, nonatomic) NSInteger changeY;
+@property (strong, nonatomic) ControlView *cv;
 
 - (void)movePlayer;
 - (id)initWithFrame:(CGRect)frame andCV:(ControlView *)cv andChangeY:(NSInteger)y andChangeX:(NSInteger)x ;

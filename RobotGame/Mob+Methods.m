@@ -11,7 +11,8 @@
 
 @implementation Mob (Methods)
 
-- (void)setupLayer {
+- (void)setupLayer
+{
     self.layer = [CALayer new];
     self.layer.bounds = CGRectMake(0,0,72,72);
     self.layer.position = CGPointMake(0, 0);
@@ -25,7 +26,8 @@
     self.layer.contents = (__bridge id)([mob CGImage]);
 }
 
-+ (Mob *)newWithHP:(NSInteger)hp andShield:(NSInteger)shield andDamage:(NSInteger)damage andImage:(NSInteger)img {
++ (Mob *)newWithHP:(NSInteger)hp andShield:(NSInteger)shield andDamage:(NSInteger)damage andImage:(NSInteger)img
+{
     Mob *mob = [DataStore newMob];
     mob.maxHP = hp;
     mob.maxShield = shield;

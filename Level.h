@@ -6,10 +6,7 @@
 //  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
-@class Square, World;
+@class Square, World, LevelViewController;
 
 @interface Level : NSManagedObject
 

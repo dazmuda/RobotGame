@@ -9,7 +9,6 @@
 #import "Score.h"
 #import "World.h"
 
-
 @implementation Score
 
 @dynamic date;

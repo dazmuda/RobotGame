@@ -6,15 +6,12 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@class LevelViewController;
-@class Arrow;
-@class Position;
+@class LevelViewController, Arrow, Position;
 
 @interface LevelView : UIView
 
-@property LevelViewController *lvc;
+@property (strong, nonatomic) LevelViewController *lvc;
 
--(void)renderGrid;
+- (void)renderGrid;
 
 @end

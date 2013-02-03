@@ -27,27 +27,15 @@
 
 @implementation WorldViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-
-        //this old allscores contained all scores on the device
-        //self.allScores = [DataStore allScores];
-        
-        self.allWorlds = [DataStore allWorlds];
-        self.allScores = [DataStore parseScores];
-        UIImage *bgImage = [UIImage imageNamed:@"loadscreen.png"];
-        self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.allWorlds = [DataStore allWorlds];
+    self.allScores = [DataStore parseScores];
+    
+    UIImage *bgImage = [UIImage imageNamed:@"loadscreen.png"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    
     self.worldTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 140, 260, 130) style:UITableViewStylePlain];
     self.worldTable.dataSource = self;
     self.worldTable.delegate = self;
@@ -136,7 +124,8 @@
     }
 }
 
--(void)presentKeyboard {
+- (void)presentKeyboard
+{
     self.nameField.text = @"";
     //bring the textfield up
     self.nameField.frame = CGRectMake(205,85,200,100);
@@ -146,7 +135,8 @@
 }
 
 //dismiss on enter using delegate method
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     //only after you press return
     //should you create the actual coredata objects
@@ -155,7 +145,8 @@
     return YES;
 }
 
--(void)allocateDataSpace {
+- (void)allocateDataSpace
+{
     Score *score = [DataStore newScore];
     score.date = [NSDate date];
     score.level = 1;
@@ -183,7 +174,8 @@
     [self.scoreTable reloadData];
 }
 
--(void)diedInWorld:(World *)world {
+- (void)diedInWorld:(World *)world
+{
     //save their score in parse
     PFObject *score = [PFObject objectWithClassName:@"Score"];
     [score setObject:[NSNumber numberWithInt:world.score.level] forKey:@"level"];
@@ -202,7 +194,8 @@
     [self.scoreTable reloadData];
 }
 
--(void)exitedGame {
+- (void)exitedGame
+{
     [DataStore save];
     [self dismissViewControllerAnimated:YES completion:nil];
     self.allWorlds = [DataStore allWorlds];

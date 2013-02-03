@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
 @class Square;
 
 @interface Mob : NSManagedObject
@@ -23,6 +20,6 @@
 @property (nonatomic, retain) Square *square;
 
 //not in coredata
-@property (strong) CALayer *layer;
+@property (strong, nonatomic) CALayer *layer;
 
 @end

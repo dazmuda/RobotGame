@@ -18,7 +18,8 @@
 @implementation Level (Methods)
 
 //create a square set for coredata
--(void)createSquares {
+-(void)createSquares
+{
     NSMutableSet *squareSet = [NSMutableSet new];
     
     Mob *mob1 = [Mob newWithHP:10 andShield:5 andDamage:2 andImage:1];
@@ -109,7 +110,8 @@
 }
 
 //create a grid to use for moving around
--(void)createGridFromSquares {
+-(void)createGridFromSquares
+{
     self.grid = [NSMutableDictionary new];
     for (Square *square in self.squares) {
         Position *position = [Position withX:square.x andY:square.y];
@@ -117,7 +119,8 @@
     }
 }
 
--(void)checkPlayerPos:(Position*)playerPos {
+-(void)checkPlayerPos:(Position*)playerPos
+{
     //for every key in the grid dictionary
     for(Position *pos in self.grid) {
         //this is the value for that key
@@ -165,7 +168,8 @@
     }
 }
 
--(BOOL)isItWall:(Position*)playerPos {
+-(BOOL)isItWall:(Position*)playerPos
+{
     BOOL isIt = FALSE;
     //for every key in the grid dictionary
     for(Position *pos in self.grid) {

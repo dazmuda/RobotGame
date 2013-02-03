@@ -15,20 +15,22 @@
 #import "UpgradeView.h"
 
 @interface StatsView ()
-@property UILabel *currentHP;
-@property UILabel *maxHP;
-@property UILabel *maxShield;
-@property UILabel *eHit;
-@property UILabel *mHit;
-@property UILabel *pHit;
-@property UILabel *ePoints;
-@property UILabel *mPoints;
-@property UILabel *pPoints;
-@property UILabel *crit;
-@property UILabel *scrap;
-@property UILabel *points;
-@property UILabel *level;
-@property UILabel *xp;
+
+@property (strong, nonatomic) UILabel *currentHP;
+@property (strong, nonatomic) UILabel *maxHP;
+@property (strong, nonatomic) UILabel *maxShield;
+@property (strong, nonatomic) UILabel *eHit;
+@property (strong, nonatomic) UILabel *mHit;
+@property (strong, nonatomic) UILabel *pHit;
+@property (strong, nonatomic) UILabel *ePoints;
+@property (strong, nonatomic) UILabel *mPoints;
+@property (strong, nonatomic) UILabel *pPoints;
+@property (strong, nonatomic) UILabel *crit;
+@property (strong, nonatomic) UILabel *scrap;
+@property (strong, nonatomic) UILabel *points;
+@property (strong, nonatomic) UILabel *level;
+@property (strong, nonatomic) UILabel *xp;
+
 @end
 
 @implementation StatsView
@@ -37,21 +39,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        //        CALayer *bgLayer = [CALayer new];
-        //        bgLayer.bounds = CGRectMake(0,0,self.window.frame.size.width,self.window.frame.size.height);
-        //        bgLayer.frame = CGRectMake(0,0,self.window.frame.size.width,self.window.frame.size.height);
-        //        UIImage *inventory = [UIImage imageNamed:@"inventory.png"];
-        //        bgLayer.contents = (__bridge id)([inventory CGImage]);
-        //        [self.layer addSublayer:bgLayer];
-        
         UIImage *bgImage = [UIImage imageNamed:@"inventory.png"];
         self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     }
     return self;
 }
 
-- (void) setupView {
+- (void)setupView
+{
     //remove the old inv items
     for (UIView* view in self.subviews) {
         [view removeFromSuperview];
@@ -60,7 +55,7 @@
     //place the buttons
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     button4.frame = CGRectMake(40, 430, 50, 50);
-    [button4 setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
+    [button4 setImage:[UIImage imageNamed:@"skills.png"] forState:UIControlStateNormal];
     button4.adjustsImageWhenHighlighted = NO;
     [button4 addTarget:self action:@selector(repair) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button4];
@@ -74,7 +69,7 @@
     
     UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
     button6.frame = CGRectMake(100, 430, 50, 50);
-    [button6 setImage:[UIImage imageNamed:@"skills.png"] forState:UIControlStateNormal];
+    [button6 setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
     button6.adjustsImageWhenHighlighted = NO;
     [button6 addTarget:self action:@selector(upgrade) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button6];
@@ -129,7 +124,8 @@
     
 }
 
--(void)updateLabels {
+- (void)updateLabels
+{
     self.currentHP.text = [NSString stringWithFormat:@"%d", self.lvc.player.currentHP];
     self.maxHP.text = [NSString stringWithFormat:@"%d", self.lvc.player.maxHP];
     self.maxShield.text = [NSString stringWithFormat:@"%d", self.lvc.player.maxShield];
@@ -142,7 +138,8 @@
     self.level.text = [NSString stringWithFormat:@"%d", self.lvc.player.level];
 }
 
--(void)repair {
+- (void)repair
+{
     double damage = self.lvc.player.maxHP - self.lvc.player.currentHP;
     if (self.lvc.player.scrap >= .5*damage) {
         self.lvc.player.scrap -= .5*damage;
@@ -155,13 +152,14 @@
     [self updateLabels];
 }
 
--(void)dismiss {
+- (void)dismiss
+{
     [DataStore save];
     [self.lvc dismissModalViewControllerAnimated:YES];
 }
 
--(void)renderInventory {
-    
+- (void)renderInventory
+{
     //the rects for checking if you drag into arm slots
     self.left = CGRectMake(125, 196, 50, 50);
     self.right = CGRectMake(182, 196, 50, 50);
@@ -191,7 +189,8 @@
     }
 }
 
--(void)upgrade{
+- (void)upgrade 
+{
     UIViewController *pvc = [UIViewController new];
     UpgradeView *upgrades = [[UpgradeView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     upgrades.lvc = self.lvc;

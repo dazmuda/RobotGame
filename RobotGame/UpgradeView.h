@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 @class LevelViewController;
 
 @interface UpgradeView : UIView
 
-@property LevelViewController *lvc;
+@property (strong, nonatomic) LevelViewController *lvc;
+
 -(void)setupView;
 
 @end

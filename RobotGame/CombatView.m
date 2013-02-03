@@ -12,49 +12,39 @@
 #import "LevelViewController.h"
 #import "Item.h"
 #import "WorldViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "DataStore.h"
 #import "World.h"
 #import "Score.h"
 
 @interface CombatView () <AVAudioPlayerDelegate>
 
-@property int mobHP;
-@property int mobShields;
-@property int playerShields;
-@property int eWeapon;
-@property int mWeapon;
-@property int pWeapon;
-@property BOOL mobStunned;
+@property (assign, nonatomic) NSInteger mobHP;
+@property (assign, nonatomic) NSInteger mobShields;
+@property (assign, nonatomic) NSInteger playerShields;
+@property (assign, nonatomic) NSInteger eWeapon;
+@property (assign, nonatomic) NSInteger mWeapon;
+@property (assign, nonatomic) NSInteger pWeapon;
+@property (assign, nonatomic) BOOL mobStunned;
 
-@property UILabel *playerHPLabel;
-@property UILabel *playerShieldsLabel;
-@property UILabel *mobHPLabel;
-@property UILabel *mobShieldsLabel;
+@property (strong, nonatomic) UILabel *playerHPLabel;
+@property (strong, nonatomic) UILabel *playerShieldsLabel;
+@property (strong, nonatomic) UILabel *mobHPLabel;
+@property (strong, nonatomic) UILabel *mobShieldsLabel;
 
-@property UIButton *leftButton;
-@property UIButton *rightButton;
+@property (strong, nonatomic) UIButton *leftButton;
+@property (strong, nonatomic) UIButton *rightButton;
 
-@property CALayer *currentAnimation;
-@property (strong) AVAudioPlayer* zapPlayer;
-@property (strong) AVAudioPlayer* bangPlayer;
-@property (strong) AVAudioPlayer* laserPlayer;
+@property (strong, nonatomic) CALayer *currentAnimation;
+@property (strong, nonatomic) AVAudioPlayer* zapPlayer;
+@property (strong, nonatomic) AVAudioPlayer* bangPlayer;
+@property (strong, nonatomic) AVAudioPlayer* laserPlayer;
 
 @end
 
 @implementation CombatView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andMob:(Mob *)mob andPlayer:(Player *)player
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-
-    }
-    return self;
-}
-
--(id)initWithFrame:(CGRect)frame andMob:(Mob*)mob andPlayer:(Player*)player {
     self = [super initWithFrame:frame];
     self.mob = mob;
     self.player = player;
@@ -91,7 +81,8 @@
     return self;
 }
 
--(void) setupWithBlock:(void (^)(void))block {
+- (void)setupWithBlock:(void (^)(void))block
+{
     //set up the temporary stats
     self.mobHP = self.mob.maxHP;
     self.mobShields = self.mob.maxShield;
@@ -178,7 +169,8 @@
     [self setNeedsDisplay];
 }
 
--(void)updateLabels {
+- (void)updateLabels
+{
     self.playerHPLabel.text = [NSString stringWithFormat:@"Hull: %d", self.player.currentHP];
     self.playerShieldsLabel.text = [NSString stringWithFormat:@"Shield: %d", self.playerShields];
     self.mobHPLabel.text = [NSString stringWithFormat:@"Hull: %d", self.mobHP];
@@ -186,7 +178,8 @@
 }
 
 //you could also set up the labels using layers
--(void)placeLabelLayer {
+- (void)placeLabelLayer
+{
     //this is a label layer
     CATextLayer *statLabel = [[CATextLayer alloc] init];
     [statLabel setString:@"sweet combat numbers"];
@@ -199,7 +192,8 @@
     [self setNeedsDisplay];
 }
 
--(void)keyframeAnimate {
+- (void)keyframeAnimate
+{
     //lets animate that!
     CAKeyframeAnimation *slider = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     //set yourself as the delegate so you can do stuff when the animation stops
@@ -216,7 +210,8 @@
     self.currentAnimation.position = CGPointMake(100,150);
 }
 
--(void)playerEHit {
+- (void)playerEHit
+{
     //disable the button until animation is complete
     self.leftButton.enabled = FALSE;
     self.rightButton.enabled = FALSE;
@@ -255,7 +250,8 @@
     [self mobHit];
 }
 
--(void)playerMHit {
+- (void)playerMHit
+{
     self.leftButton.enabled = FALSE;
     self.rightButton.enabled = FALSE;
     
@@ -291,7 +287,8 @@
     [self mobHit];
 }
 
--(void)playerPHit {
+- (void)playerPHit
+{
     self.leftButton.enabled = FALSE;
     self.rightButton.enabled = FALSE;
     
@@ -330,7 +327,8 @@
     [self mobHit];
 }
 
--(void)mobHit {
+- (void)mobHit
+{
     //it only hits you if it isn't stunned
     if (self.mobStunned == FALSE) {
         if (self.playerShields <= 0) {
@@ -362,7 +360,8 @@
 }
 
 //this method is called every time the animation finishes
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
     self.leftButton.enabled = TRUE;
     self.rightButton.enabled = TRUE;
     //it removes the layer
@@ -371,7 +370,8 @@
     [self isMobDead];
 }
 
--(void)isMobDead {
+- (void)isMobDead
+{
     if (self.mobHP <= 0) {
         //lock the buttons
         self.leftButton.enabled = FALSE;

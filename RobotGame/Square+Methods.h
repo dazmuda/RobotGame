@@ -11,8 +11,6 @@
 
 @interface Square (Methods)
 
-@property (nonatomic, retain) Position *position;
-
 + (Square *)wallWithX:(NSInteger)x andY:(NSInteger)y;
 + (Square *)floorWithX:(NSInteger)x andY:(NSInteger)y;
 

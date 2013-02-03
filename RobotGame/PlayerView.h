@@ -6,11 +6,10 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 @class LevelViewController;
 
 @interface PlayerView : UIView
 
-@property LevelViewController *lvc;
+@property (strong, nonatomic) LevelViewController *lvc;
 
 @end

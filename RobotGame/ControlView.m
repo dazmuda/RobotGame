@@ -7,7 +7,6 @@
 //
 
 #import "ControlView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "LevelViewController.h"
 #import "Player.h"
 #import "LevelView.h"
@@ -29,7 +28,8 @@
     return self;
 }
 
-- (void) makeArrowButtons {
+- (void)makeArrowButtons
+{
     Direction *upDirection = [[Direction alloc] initWithFrame:CGRectMake(30, 0, 30, 30) andCV:self andChangeY:-1 andChangeX:0];
     [self addSubview:upDirection];
     Direction *downDirection = [[Direction alloc] initWithFrame:CGRectMake(30, 60, 30, 30) andCV:self andChangeY:1 andChangeX:0];

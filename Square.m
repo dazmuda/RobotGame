@@ -10,7 +10,6 @@
 #import "Item.h"
 #import "Mob.h"
 
-
 @implementation Square
 
 @dynamic isWall;
@@ -18,5 +17,7 @@
 @dynamic y;
 @dynamic item;
 @dynamic mob;
+
+@synthesize position;
 
 @end

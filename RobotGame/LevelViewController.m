@@ -9,7 +9,7 @@
 #import "LevelViewController.h"
 #import "Level+Methods.h"
 #import "LevelView.h"
-#import "Player.h"
+#import "Player+Methods.h"
 #import "ControlView.h"
 #import "PlayerView.h"
 #import "DataStore.h"
@@ -22,22 +22,14 @@
 
 @implementation LevelViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
--(id)initWithWorld:(World*)world andWVC:(WorldViewController*)wvc {
+- (id)initWithWorld:(World *)world andWVC:(WorldViewController *)wvc
+{
     self = [super init];
     self.world = world;
     self.wvc = wvc;
@@ -55,7 +47,8 @@
     controlView.lvc = self;
     [controlView makeArrowButtons];
     
-    PlayerView *playerView = [[PlayerView alloc] initWithFrame:CGRectMake(72, 72, 72, 72)];
+    [self.player loadPosition];
+    PlayerView *playerView = [[PlayerView alloc] initWithFrame:CGRectMake(2*72, 3*72, 72, 72)];
     playerView.lvc = self;
     
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
@@ -64,10 +57,16 @@
     [parentView addSubview:playerView];
     self.view = parentView;
     
+    CGRect newBounds = self.levelView.bounds;
+    newBounds.origin.x = (self.player.position.x - 2)*72;
+    newBounds.origin.y = (self.player.position.y - 3)*72;
+    self.levelView.bounds = newBounds;
+    
     return self;
 }
 
--(void)diedInCombat {
+- (void)diedInCombat
+{
     //dismissing combatview
     [self dismissViewControllerAnimated:YES completion:^{
         //call a method inside of the worldviewcontroller!!!
@@ -75,7 +74,8 @@
     }];
 }
 
--(void)wonInCombat {
+- (void)wonInCombat
+{
     [self dismissViewControllerAnimated:YES completion:nil];
     [DataStore save];
 }
@@ -84,11 +84,6 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

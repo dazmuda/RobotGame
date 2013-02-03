@@ -11,7 +11,8 @@
 
 @implementation Item (Methods)
 
-- (void)setupLayer {
+- (void)setupLayer
+{
     self.layer = [CALayer new];
     self.layer.bounds = CGRectMake(0,0,72,72);
     UIImage *item = [UIImage imageNamed:@"phit.png"];
@@ -23,7 +24,8 @@
     self.layer.contents = (__bridge id)([item CGImage]);
 }
 
-+ (Item *)newWithType:(NSInteger)type andDamage:(NSInteger)damage {
++ (Item *)newWithType:(NSInteger)type andDamage:(NSInteger)damage
+{
     Item *item = [DataStore newItem];
     item.type = type;
     item.damage = damage;

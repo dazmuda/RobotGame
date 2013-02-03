@@ -6,15 +6,12 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@class Player;
-@class Mob;
-@class LevelViewController;
+@class Player, Mob, LevelViewController;
 
 @protocol CombatViewDelegate <NSObject>
 
--(void)diedInCombat;
--(void)wonInCombat;
+- (void)diedInCombat;
+- (void)wonInCombat;
 
 @end
 
@@ -25,7 +22,7 @@
 //@property (weak, nonatomic) LevelViewController *lvc;
 @property (weak, nonatomic) NSObject <CombatViewDelegate> *delegate;
 
--(void)setupWithBlock:(void(^)(void))block;
--(id)initWithFrame:(CGRect)frame andMob:(Mob*)mob andPlayer:(Player*)player;
+- (void)setupWithBlock:(void(^)(void))block;
+- (id)initWithFrame:(CGRect)frame andMob:(Mob *)mob andPlayer:(Player *)player;
 
 @end

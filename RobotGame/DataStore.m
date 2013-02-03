@@ -14,32 +14,36 @@
 #import "Player.h"
 #import "Position.h"
 #import "Square.h"
-#import <Parse/Parse.h>
 
-NSManagedObjectContext* storeContext;
-NSManagedObjectModel* storeModel;
+NSManagedObjectContext *storeContext;
+NSManagedObjectModel *storeModel;
 
 @interface DataStore ()
-+(NSManagedObjectContext*)context;
-+(NSManagedObjectModel*)model;
+
++ (NSManagedObjectContext *)context;
++ (NSManagedObjectModel *)model;
+
 @end
 
 @implementation DataStore
 
-+(NSArray*)parseScores {
++ (NSArray *)parseScores
+{
     PFQuery* query = [PFQuery queryWithClassName:@"Score"];
     NSArray* scores = [query findObjects];
     return scores;
 }
 
-+(NSManagedObjectModel*)model {
++ (NSManagedObjectModel *)model
+{
     if (!storeModel) {
         storeModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     }
     return storeModel;
 }
 
-+(NSManagedObjectContext*)context {
++ (NSManagedObjectContext *)context
+{
     if (!storeContext) {
         //this searches for what places can I save things permanently
         NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
@@ -71,7 +75,8 @@ NSManagedObjectModel* storeModel;
     return storeContext;
 }
 
-+(NSArray*)allWorlds {
++ (NSArray *)allWorlds
+{
     //lets make a request
     NSFetchRequest* req = [NSFetchRequest new];
     //we are using teh store model to make requests from the database
@@ -89,7 +94,8 @@ NSManagedObjectModel* storeModel;
     return result;
 }
 
-+(NSArray*)allScores {
++ (NSArray *)allScores
+{
     //lets make a request
     NSFetchRequest* req = [NSFetchRequest new];
     //we are using teh store model to make requests from the database
@@ -107,47 +113,56 @@ NSManagedObjectModel* storeModel;
     return result;
 }
 
-+(World*)newWorld {
++ (World *)newWorld
+{
     World* new = [NSEntityDescription insertNewObjectForEntityForName:@"World" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Level*)newLevel {
++ (Level *)newLevel
+{
     Level *new = [NSEntityDescription insertNewObjectForEntityForName:@"Level" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Item*)newItem {
++ (Item *)newItem
+{
     Item *new = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Mob*)newMob {
++ (Mob *)newMob
+{
     Mob *new = [NSEntityDescription insertNewObjectForEntityForName:@"Mob" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Player*)newPlayer {
++ (Player *)newPlayer
+{
     Player *new = [NSEntityDescription insertNewObjectForEntityForName:@"Player" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Position*)newPosition {
++ (Position *)newPosition
+{
     Position *new = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Square*)newSquare {
++ (Square *)newSquare
+{
     Square *new = [NSEntityDescription insertNewObjectForEntityForName:@"Square" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(Score*)newScore {
++ (Score *)newScore
+{
     Score *new = [NSEntityDescription insertNewObjectForEntityForName:@"Score" inManagedObjectContext:[DataStore context]];
     return new;
 }
 
-+(void)save {
++ (void)save
+{
     NSError* err;
     if (![[DataStore context] save:&err]) {
         [NSException raise:@"Save failed!"
@@ -155,7 +170,8 @@ NSManagedObjectModel* storeModel;
     }
 }
 
-+(void)destroy:(World*)world {
++ (void)destroy:(World *)world
+{
     [[DataStore context] deleteObject:world];
 }
 

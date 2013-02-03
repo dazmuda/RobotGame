@@ -10,17 +10,18 @@
 #import "DataStore.h"
 #import "LevelViewController.h"
 #import "Player+Methods.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface UpgradeView () <AVAudioPlayerDelegate>
-@property UILabel *epoints;
-@property UILabel *mpoints;
-@property UILabel *ppoints;
-@property UILabel *points;
 
-@property (strong) AVAudioPlayer* zapPlayer;
-@property (strong) AVAudioPlayer* bangPlayer;
-@property (strong) AVAudioPlayer* laserPlayer;
+@property (strong, nonatomic) UILabel *epoints;
+@property (strong, nonatomic) UILabel *mpoints;
+@property (strong, nonatomic) UILabel *ppoints;
+@property (strong, nonatomic) UILabel *points;
+
+@property (strong, nonatomic) AVAudioPlayer* zapPlayer;
+@property (strong, nonatomic) AVAudioPlayer* bangPlayer;
+@property (strong, nonatomic) AVAudioPlayer* laserPlayer;
+
 @end
 
 @implementation UpgradeView
@@ -29,7 +30,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         UIImage *bgImage = [UIImage imageNamed:@"stats.png"];
         self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
         
@@ -58,7 +58,8 @@
     return self;
 }
 
-- (void) setupView {
+- (void) setupView
+{
     //remove the old inv items
     for (UIView* view in self.subviews) {
         [view removeFromSuperview];
@@ -117,36 +118,40 @@
     [self updateLabels];
 }
 
--(void)increaseEPoints {
+-(void)increaseEPoints
+{
     [self.zapPlayer play];
     [self.lvc.player increaseEPoints];
     [self updateLabels];
 }
 
--(void)increaseMPoints {
+-(void)increaseMPoints
+{
     [self.laserPlayer play];
     [self.lvc.player increaseMPoints];
     [self updateLabels];
 }
 
--(void)increasePPoints {
+-(void)increasePPoints
+{
     [self.bangPlayer play];
     [self.lvc.player increasePPoints];
     [self updateLabels];
 }
 
--(void)updateLabels {
+-(void)updateLabels
+{
     self.epoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.ePoints];
     self.mpoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.mPoints];
     self.ppoints.text = [NSString stringWithFormat:@"%d", self.lvc.player.pPoints];
     self.points.text = [NSString stringWithFormat:@"%d", self.lvc.player.points];
 }
 
--(void)dismiss {
+-(void)dismiss
+{
     [DataStore save];
     [self.lvc dismissModalViewControllerAnimated:YES];
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

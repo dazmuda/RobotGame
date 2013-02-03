@@ -10,7 +10,6 @@
 #import "Item.h"
 #import "World.h"
 
-
 @implementation Player
 
 @dynamic crit;

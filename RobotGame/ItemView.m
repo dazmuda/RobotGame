@@ -23,7 +23,8 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame andItem:(Item*)item andSV:(StatsView*)sv{
+- (id)initWithFrame:(CGRect)frame andItem:(Item *)item andSV:(StatsView *)sv 
+{
     self = [super initWithFrame:frame];
     //set the item
     self.item = item;
@@ -45,7 +46,8 @@
     return self;
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *someTouch = [touches anyObject];
     CGPoint touchPoint = [someTouch locationInView:self.sv];
     int newX = touchPoint.x;
@@ -53,7 +55,8 @@
     self.frame = CGRectMake(newX-25, newY-25, 50, 50);
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
     //if the item was dragged into an arm spot
     BOOL insideRight = CGRectContainsPoint(self.sv.right, self.center);
     BOOL insideLeft = CGRectContainsPoint(self.sv.left, self.center);

@@ -9,7 +9,6 @@
 #import "Mob.h"
 #import "Square.h"
 
-
 @implementation Mob
 
 @dynamic damage;

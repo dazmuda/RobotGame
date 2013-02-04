@@ -1,12 +1,12 @@
 //
-//  CombatView.m
-//  Robots
+//  FightViewController.m
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/10/12.
-//  Copyright (c) 2012 Diana Zmuda. All rights reserved.
+//  Created by Diana Zmuda on 2/3/13.
+//  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-#import "CombatView.h"
+#import "FightViewController.h"
 #import "Player+Methods.h"
 #import "Mob.h"
 #import "LevelViewController.h"
@@ -16,7 +16,7 @@
 #import "World.h"
 #import "Score.h"
 
-@interface CombatView () <AVAudioPlayerDelegate>
+@interface FightViewController () <AVAudioPlayerDelegate>
 
 @property (assign, nonatomic) NSInteger mobHP;
 @property (assign, nonatomic) NSInteger mobShields;
@@ -26,10 +26,10 @@
 @property (assign, nonatomic) NSInteger pWeapon;
 @property (assign, nonatomic) BOOL mobStunned;
 
-@property (strong, nonatomic) UILabel *playerHPLabel;
-@property (strong, nonatomic) UILabel *playerShieldsLabel;
-@property (strong, nonatomic) UILabel *mobHPLabel;
-@property (strong, nonatomic) UILabel *mobShieldsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerHPLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerShieldsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mobHPLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mobShieldsLabel;
 
 @property (strong, nonatomic) UIButton *leftButton;
 @property (strong, nonatomic) UIButton *rightButton;
@@ -41,13 +41,11 @@
 
 @end
 
-@implementation CombatView
+@implementation FightViewController
 
-- (id)initWithFrame:(CGRect)frame andMob:(Mob *)mob andPlayer:(Player *)player
+- (void)viewDidLoad
 {
-    self = [super initWithFrame:frame];
-    self.mob = mob;
-    self.player = player;
+    [super viewDidLoad];
     
     UIImage *bgImage = [UIImage imageNamed:@"fightpurple.png"];
     if (self.mob.image == 2) {
@@ -55,7 +53,20 @@
     } else if (self.mob.image == 3) {
         bgImage = [UIImage imageNamed:@"fightblue.png"];
     }
-    self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    
+    [self.view addSubview:self.rightButton];
+    [self.view addSubview:self.leftButton];
+    
+    [self updateLabels];
+    [self.view setNeedsDisplay];
+}
+
+- (id)initWithMob:(Mob *)mob andPlayer:(Player *)player
+{
+    self = [super init];
+    self.mob = mob;
+    self.player = player;
     
     NSString *zaudioFilePath = [[NSBundle mainBundle] pathForResource:@"zap" ofType:@"wav"];
     NSURL *zaudioFileURL = [NSURL fileURLWithPath:zaudioFilePath];
@@ -145,28 +156,8 @@
         [self.leftButton addTarget:self action:@selector(playerPHit) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    [self addSubview:self.rightButton];
-    [self addSubview:self.leftButton];
-    
-    //add the labels
-    self.playerHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 360, 200, 30)];
-    self.playerHPLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.playerHPLabel];
-    self.playerShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 390, 200, 30)];
-    self.playerShieldsLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.playerShieldsLabel];
-    self.mobHPLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 200, 30)];
-    self.mobHPLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.mobHPLabel];
-    self.mobShieldsLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 200, 30)];
-    self.mobShieldsLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    [self addSubview:self.mobShieldsLabel];
-    
     //call the block that removes the mob from the level map
     block();
-    
-    [self updateLabels];
-    [self setNeedsDisplay];
 }
 
 - (void)updateLabels
@@ -175,21 +166,6 @@
     self.playerShieldsLabel.text = [NSString stringWithFormat:@"Shield: %d", self.playerShields];
     self.mobHPLabel.text = [NSString stringWithFormat:@"Hull: %d", self.mobHP];
     self.mobShieldsLabel.text = [NSString stringWithFormat:@"Shield: %d", self.mobShields];
-}
-
-//you could also set up the labels using layers
-- (void)placeLabelLayer
-{
-    //this is a label layer
-    CATextLayer *statLabel = [[CATextLayer alloc] init];
-    [statLabel setString:@"sweet combat numbers"];
-    [statLabel setFont:@"Helvetica-Bold"];
-    [statLabel setFrame:CGRectMake(50, 300, 300, 100)];
-    [statLabel setFontSize:20];
-    [statLabel setForegroundColor:[[UIColor blackColor] CGColor]];
-    //statLabel.position = CGPointMake(100,100);
-    [self.layer addSublayer:statLabel];
-    [self setNeedsDisplay];
 }
 
 - (void)keyframeAnimate
@@ -241,7 +217,7 @@
     self.currentAnimation.frame = CGRectMake(50,300,46,100);
     UIImage *electricity = [UIImage imageNamed:@"ebullet.png"];
     self.currentAnimation.contents = (__bridge id)([electricity CGImage]);
-    [self.layer addSublayer:self.currentAnimation];
+    [self.view.layer addSublayer:self.currentAnimation];
     
     [self keyframeAnimate];
     //PLAY ZE SOUND
@@ -280,7 +256,7 @@
     self.currentAnimation.frame = CGRectMake(50,300,46,100);
     UIImage *laser = [UIImage imageNamed:@"mbullet.png"];
     self.currentAnimation.contents = (__bridge id)([laser CGImage]);
-    [self.layer addSublayer:self.currentAnimation];
+    [self.view.layer addSublayer:self.currentAnimation];
     
     [self keyframeAnimate];
     [self.laserPlayer play];
@@ -320,7 +296,7 @@
     self.currentAnimation.frame = CGRectMake(50,300,46,100);
     UIImage *missile = [UIImage imageNamed:@"pbullet.png"];
     self.currentAnimation.contents = (__bridge id)([missile CGImage]);
-    [self.layer addSublayer:self.currentAnimation];
+    [self.view.layer addSublayer:self.currentAnimation];
     
     [self keyframeAnimate];
     [self.bangPlayer play];
@@ -351,7 +327,7 @@
         //display on screen
         UILabel *deadLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 30)];
         deadLabel.text = @"GORT LOST!";
-        [self addSubview:deadLabel];
+        [self.view addSubview:deadLabel];
         //DISMISS ALL THE THINGS
         [self.delegate performSelector:@selector(diedInCombat) withObject:nil afterDelay:1];
         //saves the score you got to the datasore
@@ -379,7 +355,7 @@
         //indicate on the screen
         UILabel *winLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 30)];
         winLabel.text = @"GORT WINS AGAIN!";
-        [self addSubview:winLabel];
+        [self.view addSubview:winLabel];
         //grab their stuff and check level up
         self.player.xp += self.mob.xp;
         self.player.scrap += self.mob.scrap;
@@ -387,7 +363,7 @@
             //indicate on the screen
             UILabel *dingLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 30)];
             dingLabel.text = @"GORT LEVELED UP!";
-            [self addSubview:dingLabel];
+            [self.view addSubview:dingLabel];
         }
         //increment score
         self.player.world.score.wins += 1;
@@ -397,13 +373,5 @@
     }
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end

@@ -12,7 +12,6 @@
 #import "LevelViewController.h"
 #import "Level+Methods.h"
 #import "Item+Methods.h"
-#import "CombatView.h"
 #import "Position.h"
 #import "Square+Methods.h"
 

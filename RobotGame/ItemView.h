@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Diana Zmuda. All rights reserved.
 //
 
-@class StatsView, Item;
+@class StatsViewController, Item;
 
 @interface ItemView : UIView
 
-@property StatsView *sv;
+@property StatsViewController *svc;
 @property Item *item;
 
-- (id)initWithFrame:(CGRect)frame andItem:(Item *)item andSV:(StatsView *)sv;
+- (id)initWithFrame:(CGRect)frame andItem:(Item *)item andSV:(StatsViewController *)svc;
 
 @end

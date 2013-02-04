@@ -17,11 +17,11 @@
 
 @interface WorldViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property NSArray *allWorlds;
-@property NSArray *allScores;
-@property UITableView *worldTable;
-@property UITableView *scoreTable;
-@property UITextField *nameField;
+@property (strong, nonatomic) NSArray *allWorlds;
+@property (strong, nonatomic) NSArray *allScores;
+@property (weak, nonatomic) IBOutlet UITableView *worldTable;
+@property (weak, nonatomic) IBOutlet UITableView *scoreTable;
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
 
 @end
 
@@ -36,35 +36,16 @@
     UIImage *bgImage = [UIImage imageNamed:@"loadscreen.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     
-    self.worldTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 140, 260, 130) style:UITableViewStylePlain];
-    self.worldTable.dataSource = self;
-    self.worldTable.delegate = self;
-    [self.view addSubview: self.worldTable];
-    
     UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 30, 30)];
     [newButton setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
     [newButton addTarget:self action:@selector(presentKeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:newButton];
-    
-    self.scoreTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, 260, 130) style:UITableViewStylePlain];
-    self.scoreTable.dataSource = self;
-    self.scoreTable.delegate = self;
-    [self.view addSubview: self.scoreTable];
-    
-    //create an invisible textfield for their name
-    self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(-50,-50,10,10)];
-    self.nameField.delegate = self;
-    [self.view addSubview: self.nameField];
 }
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

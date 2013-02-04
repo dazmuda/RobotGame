@@ -1,18 +1,16 @@
 //
-//  StatsView.h
-//  Robots
+//  StatsViewController.h
+//  RobotGame
 //
-//  Created by Diana Zmuda on 9/13/12.
-//  Copyright (c) 2012 Diana Zmuda. All rights reserved.
+//  Created by Diana Zmuda on 2/3/13.
+//  Copyright (c) 2013 Diana Zmuda. All rights reserved.
 //
 
-@class LevelViewController;
-@class ItemView;
+@class LevelViewController, ItemView;
 
-@interface StatsView : UIView
+@interface StatsViewController : UIViewController
 
 @property (strong, nonatomic) LevelViewController *lvc;
-@property (strong, nonatomic) UIViewController *vc;
 
 @property (assign, nonatomic) CGRect left;
 @property (assign, nonatomic) CGRect right;

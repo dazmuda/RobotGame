@@ -10,7 +10,7 @@
 #import "Mob+Methods.h"
 #import "Square+Methods.h"
 #import "Position.h"
-#import "CombatView.h"
+#import "FightViewController.h"
 #import "Item+Methods.h"
 #import "LevelViewController.h"
 #import "Player+Methods.h"
@@ -130,18 +130,16 @@
             //is the first object in the square a mob
             if (square.mob) {
                 //trigger combat view
-                UIViewController *cvc = [UIViewController new];
-                CombatView *comView = [[CombatView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) andMob:square.mob andPlayer:self.lvc.player];
-                [comView setupWithBlock:^{
+                FightViewController *fightView = [[FightViewController alloc] initWithMob:square.mob andPlayer:self.lvc.player];
+                [fightView setupWithBlock:^{
                     //give the setup method a block that will
                     //remove the mob layer from the level view and set the square objects to nil
                     [[square.mob layer] removeFromSuperlayer];
                     square.mob = nil;
                 }];
                 //comView.lvc = self.lvc;
-                comView.delegate = self.lvc;
-                cvc.view = comView;
-                [self.lvc presentModalViewController:cvc animated:YES];
+                fightView.delegate = self.lvc;
+                [self.lvc presentModalViewController:fightView animated:YES];
                 
             } else if (square.item) {
                 //take item

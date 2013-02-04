@@ -7,7 +7,7 @@
 //
 
 #import "PlayerView.h"
-#import "StatsView.h"
+#import "StatsViewController.h"
 #import "LevelViewController.h"
 
 @implementation PlayerView
@@ -30,13 +30,10 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UIViewController *pvc = [UIViewController new];
-    StatsView *statsView = [[StatsView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    statsView.lvc = self.lvc;
-    statsView.vc = pvc;
-    [statsView setupView];
-    pvc.view = statsView;
-    [self.lvc presentModalViewController:pvc animated:YES];
+    StatsViewController *svc = [StatsViewController new];
+    svc.lvc = self.lvc;
+    [svc setupView];
+    [self.lvc presentModalViewController:svc animated:YES];
 }
 
 /*

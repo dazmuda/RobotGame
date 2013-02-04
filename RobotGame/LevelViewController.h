@@ -7,9 +7,9 @@
 //
 
 @class Level, LevelView, Player, World, WorldViewController;
-#import "CombatView.h"
+#import "FightViewController.h"
 
-@interface LevelViewController : UIViewController <CombatViewDelegate>
+@interface LevelViewController : UIViewController <FightViewDelegate>
 
 @property (strong, nonatomic) Level *level;
 @property (strong, nonatomic) LevelView *levelView;

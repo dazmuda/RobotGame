@@ -24,7 +24,6 @@
     self.cv = cv;
     self.changeY = y;
     self.changeX = x;
-    [self setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(movePlayer) forControlEvents:UIControlEventTouchUpInside];
     return self;
 }

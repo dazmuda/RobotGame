@@ -30,17 +30,18 @@
 
 - (void)makeArrowButtons
 {
-    Direction *upDirection = [[Direction alloc] initWithFrame:CGRectMake(30, 0, 30, 30) andCV:self andChangeY:-1 andChangeX:0];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    Direction *upDirection = [[Direction alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height/3) andCV:self andChangeY:-1 andChangeX:0];
     [self addSubview:upDirection];
-    Direction *downDirection = [[Direction alloc] initWithFrame:CGRectMake(30, 60, 30, 30) andCV:self andChangeY:1 andChangeX:0];
+    Direction *downDirection = [[Direction alloc] initWithFrame:CGRectMake(0, 2*screenSize.height/3, screenSize.width, screenSize.height/3) andCV:self andChangeY:1 andChangeX:0];
     [self addSubview:downDirection];
-    Direction *leftDirection = [[Direction alloc] initWithFrame:CGRectMake(0, 30, 30, 30) andCV:self andChangeY:0 andChangeX:-1];
+    Direction *leftDirection = [[Direction alloc] initWithFrame:CGRectMake(0, screenSize.height/3, screenSize.width/2 -40, screenSize.height/3) andCV:self andChangeY:0 andChangeX:-1];
     [self addSubview:leftDirection];
-    Direction *rightDirection = [[Direction alloc] initWithFrame:CGRectMake(60, 30, 30, 30) andCV:self andChangeY:0 andChangeX:1];
+    Direction *rightDirection = [[Direction alloc] initWithFrame:CGRectMake(screenSize.width/2 +75, screenSize.height/3, screenSize.width/2 -40, screenSize.height/3) andCV:self andChangeY:0 andChangeX:1];
     [self addSubview:rightDirection];
-    UIButton *worldButton = [[UIButton alloc] initWithFrame:CGRectMake(170, 70, 30, 30)];
+    UIButton *worldButton = [[UIButton alloc] initWithFrame:CGRectMake(screenSize.width-50, screenSize.height-50, 50, 50)];
     [worldButton addTarget:self.lvc.wvc action:@selector(exitedGame) forControlEvents:UIControlEventTouchUpInside];
-    [worldButton setImage:[UIImage imageNamed:@"enter.png"] forState:UIControlStateNormal];
+    [worldButton setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
     [self addSubview:worldButton];
 }
 
